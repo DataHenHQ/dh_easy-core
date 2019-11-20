@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Eduardo Rosales"]
   spec.email         = ["eduardo@datahen.com"]
 
-  spec.summary       = %q{Datahen Easy toolkit core module}
-  spec.description   = %q{Datahen Easy toolkit core module to support other complex modules.}
+  spec.summary       = %q{DataHen Easy toolkit core module}
+  spec.description   = %q{DataHen Easy toolkit core module to support other complex modules.}
   spec.homepage      = "https://datahen.com"
   spec.license       = "MIT"
 
