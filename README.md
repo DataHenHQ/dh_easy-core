@@ -5,12 +5,16 @@
 # DhEasy core module
 ## Description
 
-DhEasy core is part of DhEasy gem collection and allow advance Datahen features possible by function as a base for other gems.
+DhEasy core is part of DhEasy gem collection and allow advance DataHen features possible by function as a base for other gems.
 
 Install gem:
-```gem install 'dh_easy-core'```
+```
+gem install 'dh_easy-core'
+```
 
 Require gem:
-```require 'dh_easy/core'```
+```
+require 'dh_easy/core'
+```
 
 Documentation can be found [here](http://rubydoc.org/gems/dh_easy-core/frames).
