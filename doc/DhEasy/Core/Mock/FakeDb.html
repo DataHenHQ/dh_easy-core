@@ -6,15 +6,15 @@
 <title>
   Class: DhEasy::Core::Mock::FakeDb
   
-    &mdash; Documentation by YARD 0.9.20
+    &mdash; Documentation by YARD 0.9.24
   
 </title>
 
-  <link rel="stylesheet" href="../../../css/style.css" type="text/css" charset="utf-8" />
+  <link rel="stylesheet" href="../../../css/style.css" type="text/css" />
 
-  <link rel="stylesheet" href="../../../css/common.css" type="text/css" charset="utf-8" />
+  <link rel="stylesheet" href="../../../css/common.css" type="text/css" />
 
-<script type="text/javascript" charset="utf-8">
+<script type="text/javascript">
   pathId = "DhEasy::Core::Mock::FakeDb";
   relpath = '../../../';
 </script>
@@ -102,8 +102,7 @@
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
     
-<p>Fake in memory database that emulates `DataHen` database objects&#39; black
-box behavior.</p>
+<p>Fake in memory database that emulates `DataHen` database objects&#39; black box behavior.</p>
 
 
   </div>
@@ -204,6 +203,54 @@ box behavior.</p>
 </div>
         </dt>
         <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>default</span><span class='tstring_end'>&#39;</span></span></pre></dd>
+      
+        <dt id="DEFAULT_FETCH_TYPE-constant" class="">DEFAULT_FETCH_TYPE =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>Default page&#39;s fetch type</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>standard</span><span class='tstring_end'>&#39;</span></span></pre></dd>
+      
+        <dt id="DEFAULT_UUID_ALGORITHM-constant" class="">DEFAULT_UUID_ALGORITHM =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>Default uuid algorithm</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='symbol'>:md5</span></pre></dd>
+      
+        <dt id="VALID_UUID_ALGORITHMS-constant" class="">VALID_UUID_ALGORITHMS =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>Valid uuid algorithms</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='lbracket'>[</span><span class='symbol'>:md5</span><span class='comma'>,</span> <span class='symbol'>:sha1</span><span class='comma'>,</span> <span class='symbol'>:sha256</span><span class='rbracket'>]</span></pre></dd>
       
     </dl>
   
@@ -336,8 +383,7 @@ box behavior.</p>
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Clean an URL to remove fragment, lowercase schema and host, and sort  
-query string.</p>
+<p>Clean an URL to remove fragment, lowercase schema and host, and sort   query string.</p>
 </div></span>
   
 </li>
@@ -346,7 +392,31 @@ query string.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#fake_uuid-class_method" title="fake_uuid (class method)">.<strong>fake_uuid</strong>(seed = nil)  &#x21d2; String </a>
+      <a href="#clean_uri_obj-class_method" title="clean_uri_obj (class method)">.<strong>clean_uri_obj</strong>(raw_url)  &#x21d2; URI::HTTPS </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Clean an URL to remove fragment, lowercase schema and host, and sort   query string.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#fake_uuid-class_method" title="fake_uuid (class method)">.<strong>fake_uuid</strong>(seed = nil, algorithm = nil)  &#x21d2; String </a>
     
 
     
@@ -394,7 +464,7 @@ query string.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#output_uuid-class_method" title="output_uuid (class method)">.<strong>output_uuid</strong>(data)  &#x21d2; String </a>
+      <a href="#output_uuid-class_method" title="output_uuid (class method)">.<strong>output_uuid</strong>(data, uuid_algorithm = nil)  &#x21d2; String </a>
     
 
     
@@ -466,8 +536,7 @@ query string.</p>
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Specify whenever job id overriding by user is allowed on page or   output
-insert.</p>
+<p>Specify whenever job id overriding by user is allowed on page or   output insert.</p>
 </div></span>
   
 </li>
@@ -491,8 +560,7 @@ insert.</p>
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Specify whenever page gid overriding by user is allowed on page or   output
-insert.</p>
+<p>Specify whenever page gid overriding by user is allowed on page or   output insert.</p>
 </div></span>
   
 </li>
@@ -621,6 +689,30 @@ insert.</p>
         <li class="public ">
   <span class="summary_signature">
     
+      <a href="#fake_uuid-instance_method" title="#fake_uuid (instance method)">#<strong>fake_uuid</strong>(seed = nil)  &#x21d2; String </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Generate a fake UUID using the configured uuid algorithm.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#generate_job_id-instance_method" title="#generate_job_id (instance method)">#<strong>generate_job_id</strong>  &#x21d2; Integer </a>
     
 
@@ -684,8 +776,7 @@ insert.</p>
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Generate a fake UUID based on page data:   * url   * method   * headers   *
-fetch_type   * cookie   * no_redirect   * body   * ua_type.</p>
+<p>Generate a fake UUID based on page data:   * url   * method   * headers   * fetch_type   * cookie   * no_redirect   * body   * ua_type.</p>
 </div></span>
   
 </li>
@@ -1029,6 +1120,54 @@ fetch_type   * cookie   * no_redirect   * body   * ua_type.</p>
 </li>
 
       
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#uuid_algorithm-instance_method" title="#uuid_algorithm (instance method)">#<strong>uuid_algorithm</strong>  &#x21d2; Enumerator<sup>?</sup> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Current UUID algorithm.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#uuid_algorithm=-instance_method" title="#uuid_algorithm= (instance method)">#<strong>uuid_algorithm=</strong>(value)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Set current UUID algorithm value.</p>
+</div></span>
+  
+</li>
+
+      
     </ul>
   
 
@@ -1153,6 +1292,22 @@ fetch_type   * cookie   * no_redirect   * body   * ua_type.</p>
           
         </li>
       
+        <li>
+          <span class="name">:uuid_algorithm</span>
+          <span class="type">(<tt>Enumerator</tt>, <tt>nil</tt>)</span>
+          <span class="default">
+            
+              &mdash; default:
+              <tt>:md5</tt>
+            
+          </span>
+          
+            &mdash; <div class='inline'>
+<p>Specify the algorithm to be used to generate UUID values.</p>
+</div>
+          
+        </li>
+      
     </ul>
   
 
@@ -1163,21 +1318,23 @@ fetch_type   * cookie   * no_redirect   * body   * ua_type.</p>
       <pre class="lines">
 
 
-266
-267
-268
-269
-270
-271
-272</pre>
+380
+381
+382
+383
+384
+385
+386
+387</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dh_easy/core/mock/fake_db.rb', line 266</span>
+      <pre class="code"><span class="info file"># File 'lib/dh_easy/core/mock/fake_db.rb', line 380</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span> <span class='id identifier rubyid_opts'>opts</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_job_id'>job_id</span> <span class='op'>=</span> <span class='id identifier rubyid_opts'>opts</span><span class='lbracket'>[</span><span class='symbol'>:job_id</span><span class='rbracket'>]</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_scraper_name'>scraper_name</span> <span class='op'>=</span> <span class='id identifier rubyid_opts'>opts</span><span class='lbracket'>[</span><span class='symbol'>:scraper_name</span><span class='rbracket'>]</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_page_gid'>page_gid</span> <span class='op'>=</span> <span class='id identifier rubyid_opts'>opts</span><span class='lbracket'>[</span><span class='symbol'>:page_gid</span><span class='rbracket'>]</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_uuid_algorithm'>uuid_algorithm</span> <span class='op'>=</span> <span class='id identifier rubyid_opts'>opts</span><span class='lbracket'>[</span><span class='symbol'>:uuid_algorithm</span><span class='rbracket'>]</span>
   <span class='ivar'>@allow_page_gid_override</span> <span class='op'>=</span> <span class='id identifier rubyid_opts'>opts</span><span class='lbracket'>[</span><span class='symbol'>:allow_page_gid_override</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>?</span> <span class='kw'>false</span> <span class='op'>:</span> <span class='op'>!</span><span class='op'>!</span><span class='id identifier rubyid_opts'>opts</span><span class='lbracket'>[</span><span class='symbol'>:allow_page_gid_override</span><span class='rbracket'>]</span>
   <span class='ivar'>@allow_job_id_override</span> <span class='op'>=</span> <span class='id identifier rubyid_opts'>opts</span><span class='lbracket'>[</span><span class='symbol'>:allow_job_id_override</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>?</span> <span class='kw'>false</span> <span class='op'>:</span> <span class='op'>!</span><span class='op'>!</span><span class='id identifier rubyid_opts'>opts</span><span class='lbracket'>[</span><span class='symbol'>:allow_job_id_override</span><span class='rbracket'>]</span>
 <span class='kw'>end</span></pre>
@@ -1311,17 +1468,17 @@ fetch_type   * cookie   * no_redirect   * body   * ua_type.</p>
       <pre class="lines">
 
 
-146
-147
-148
-149
-150
-151
-152
-153</pre>
+243
+244
+245
+246
+247
+248
+249
+250</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dh_easy/core/mock/fake_db.rb', line 146</span>
+      <pre class="code"><span class="info file"># File 'lib/dh_easy/core/mock/fake_db.rb', line 243</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_build_fake_job'>build_fake_job</span> <span class='id identifier rubyid_opts'>opts</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
   <span class='id identifier rubyid_job'>job</span> <span class='op'>=</span> <span class='lbrace'>{</span>
@@ -1422,15 +1579,15 @@ fetch_type   * cookie   * no_redirect   * body   * ua_type.</p>
       <pre class="lines">
 
 
-74
-75
-76
-77
-78
-79</pre>
+90
+91
+92
+93
+94
+95</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dh_easy/core/mock/fake_db.rb', line 74</span>
+      <pre class="code"><span class="info file"># File 'lib/dh_easy/core/mock/fake_db.rb', line 90</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_build_fake_page'>build_fake_page</span> <span class='id identifier rubyid_opts'>opts</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
   <span class='id identifier rubyid_page'>page</span> <span class='op'>=</span> <span class='lbrace'>{</span>
@@ -1520,14 +1677,14 @@ fetch_type   * cookie   * no_redirect   * body   * ua_type.</p>
       <pre class="lines">
 
 
-132
-133
-134
-135
-136</pre>
+229
+230
+231
+232
+233</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dh_easy/core/mock/fake_db.rb', line 132</span>
+      <pre class="code"><span class="info file"># File 'lib/dh_easy/core/mock/fake_db.rb', line 229</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_build_job'>build_job</span> <span class='id identifier rubyid_job'>job</span><span class='comma'>,</span> <span class='id identifier rubyid_opts'>opts</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
   <span class='id identifier rubyid_temp_db'>temp_db</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../DhEasy.html" title="DhEasy (module)">DhEasy</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Core.html" title="DhEasy::Core (module)">Core</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Mock.html" title="DhEasy::Core::Mock (module)">Mock</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="DhEasy::Core::Mock::FakeDb (class)">FakeDb</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="#initialize-instance_method" title="DhEasy::Core::Mock::FakeDb#initialize (method)">new</a></span></span> <span class='id identifier rubyid_opts'>opts</span>
@@ -1616,18 +1773,18 @@ fetch_type   * cookie   * no_redirect   * body   * ua_type.</p>
       <pre class="lines">
 
 
-58
-59
-60
-61
-62
-63
-64
-65
-66</pre>
+74
+75
+76
+77
+78
+79
+80
+81
+82</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dh_easy/core/mock/fake_db.rb', line 58</span>
+      <pre class="code"><span class="info file"># File 'lib/dh_easy/core/mock/fake_db.rb', line 74</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_build_page'>build_page</span> <span class='id identifier rubyid_page'>page</span><span class='comma'>,</span> <span class='id identifier rubyid_opts'>opts</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
   <span class='id identifier rubyid_opts'>opts</span> <span class='op'>=</span> <span class='lbrace'>{</span>
@@ -1705,30 +1862,107 @@ fetch_type   * cookie   * no_redirect   * body   * ua_type.</p>
       <pre class="lines">
 
 
-87
-88
-89
-90
-91
-92
-93
-94
-95
-96
-97
-98
-99
-100
-101
-102
-103
-104
-105</pre>
+129
+130
+131</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dh_easy/core/mock/fake_db.rb', line 87</span>
+      <pre class="code"><span class="info file"># File 'lib/dh_easy/core/mock/fake_db.rb', line 129</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_clean_uri'>clean_uri</span> <span class='id identifier rubyid_raw_url'>raw_url</span>
+  <span class='id identifier rubyid_clean_uri_obj'>clean_uri_obj</span><span class='lparen'>(</span><span class='id identifier rubyid_raw_url'>raw_url</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="clean_uri_obj-class_method">
+  
+    .<strong>clean_uri_obj</strong>(raw_url)  &#x21d2; <tt>URI::HTTPS</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Clean an URL to remove fragment, lowercase schema and host, and sort</p>
+
+<pre class="code ruby"><code class="ruby">query string.
+</code></pre>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>raw_url</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>URL to clean.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>URI::HTTPS</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/dh_easy/core/mock/fake_db.rb', line 103</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_clean_uri_obj'>clean_uri_obj</span> <span class='id identifier rubyid_raw_url'>raw_url</span>
   <span class='id identifier rubyid_url'>url</span> <span class='op'>=</span> <span class='const'>URI</span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span><span class='lparen'>(</span><span class='id identifier rubyid_raw_url'>raw_url</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_url'>url</span><span class='period'>.</span><span class='id identifier rubyid_hostname'>hostname</span> <span class='op'>=</span> <span class='id identifier rubyid_url'>url</span><span class='period'>.</span><span class='id identifier rubyid_hostname'>hostname</span><span class='period'>.</span><span class='id identifier rubyid_downcase'>downcase</span>
   <span class='id identifier rubyid_url'>url</span><span class='period'>.</span><span class='id identifier rubyid_fragment'>fragment</span> <span class='op'>=</span> <span class='kw'>nil</span>
@@ -1745,7 +1979,7 @@ fetch_type   * cookie   * no_redirect   * body   * ua_type.</p>
     <span class='kw'>end</span>
     <span class='id identifier rubyid_url'>url</span><span class='period'>.</span><span class='id identifier rubyid_query'>query</span> <span class='op'>=</span> <span class='id identifier rubyid_data'>data</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>&amp;</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
   <span class='kw'>end</span>
-  <span class='id identifier rubyid_url'>url</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
+  <span class='id identifier rubyid_url'>url</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1755,7 +1989,7 @@ fetch_type   * cookie   * no_redirect   * body   * ua_type.</p>
       <div class="method_details ">
   <h3 class="signature " id="fake_uuid-class_method">
   
-    .<strong>fake_uuid</strong>(seed = nil)  &#x21d2; <tt>String</tt> 
+    .<strong>fake_uuid</strong>(seed = nil, algorithm = nil)  &#x21d2; <tt>String</tt> 
   
 
   
@@ -1791,6 +2025,24 @@ fetch_type   * cookie   * no_redirect   * body   * ua_type.</p>
       
     </li>
   
+    <li>
+      
+        <span class='name'>algorithm</span>
+      
+      
+        <span class='type'>(<tt>Enumerator</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>(nil) Algorithm to use: sha256 (default), sha1, md5.</p>
+</div>
+      
+    </li>
+  
 </ul>
 
 <p class="tag_title">Returns:</p>
@@ -1813,17 +2065,33 @@ fetch_type   * cookie   * no_redirect   * body   * ua_type.</p>
       <pre class="lines">
 
 
-37
-38
-39
-40</pre>
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dh_easy/core/mock/fake_db.rb', line 37</span>
+      <pre class="code"><span class="info file"># File 'lib/dh_easy/core/mock/fake_db.rb', line 44</span>
 
-<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_fake_uuid'>fake_uuid</span> <span class='id identifier rubyid_seed'>seed</span> <span class='op'>=</span> <span class='kw'>nil</span>
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_fake_uuid'>fake_uuid</span> <span class='id identifier rubyid_seed'>seed</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_algorithm'>algorithm</span> <span class='op'>=</span> <span class='kw'>nil</span>
   <span class='id identifier rubyid_seed'>seed</span> <span class='op'>||=</span> <span class='lparen'>(</span><span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='period'>.</span><span class='id identifier rubyid_to_f'>to_f</span> <span class='op'>+</span> <span class='id identifier rubyid_rand'>rand</span><span class='rparen'>)</span>
-  <span class='const'>Digest</span><span class='op'>::</span><span class='const'>SHA1</span><span class='period'>.</span><span class='id identifier rubyid_hexdigest'>hexdigest</span> <span class='id identifier rubyid_seed'>seed</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
+  <span class='id identifier rubyid_algorithm'>algorithm</span> <span class='op'>||=</span> <span class='const'><span class='object_link'><a href="#DEFAULT_UUID_ALGORITHM-constant" title="DhEasy::Core::Mock::FakeDb::DEFAULT_UUID_ALGORITHM (constant)">DEFAULT_UUID_ALGORITHM</a></span></span>
+  <span class='kw'>case</span> <span class='id identifier rubyid_algorithm'>algorithm</span>
+  <span class='kw'>when</span> <span class='symbol'>:sha256</span>
+    <span class='const'>Digest</span><span class='op'>::</span><span class='const'>SHA256</span><span class='period'>.</span><span class='id identifier rubyid_hexdigest'>hexdigest</span> <span class='id identifier rubyid_seed'>seed</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
+  <span class='kw'>when</span> <span class='symbol'>:sha1</span>
+    <span class='const'>Digest</span><span class='op'>::</span><span class='const'>SHA1</span><span class='period'>.</span><span class='id identifier rubyid_hexdigest'>hexdigest</span> <span class='id identifier rubyid_seed'>seed</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
+  <span class='kw'>else</span>
+    <span class='const'>Digest</span><span class='op'>::</span><span class='const'>MD5</span><span class='period'>.</span><span class='id identifier rubyid_hexdigest'>hexdigest</span> <span class='id identifier rubyid_seed'>seed</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
+  <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1907,12 +2175,12 @@ fetch_type   * cookie   * no_redirect   * body   * ua_type.</p>
       <pre class="lines">
 
 
-28
-29
-30</pre>
+34
+35
+36</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dh_easy/core/mock/fake_db.rb', line 28</span>
+      <pre class="code"><span class="info file"># File 'lib/dh_easy/core/mock/fake_db.rb', line 34</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_new_collection'>new_collection</span> <span class='id identifier rubyid_keys'>keys</span><span class='comma'>,</span> <span class='id identifier rubyid_opts'>opts</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
   <span class='const'><span class='object_link'><a href="../../../DhEasy.html" title="DhEasy (module)">DhEasy</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Core.html" title="DhEasy::Core (module)">Core</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../SmartCollection.html" title="DhEasy::Core::SmartCollection (class)">SmartCollection</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="../SmartCollection.html#initialize-instance_method" title="DhEasy::Core::SmartCollection#initialize (method)">new</a></span></span> <span class='id identifier rubyid_keys'>keys</span><span class='comma'>,</span> <span class='id identifier rubyid_opts'>opts</span>
@@ -1925,7 +2193,7 @@ fetch_type   * cookie   * no_redirect   * body   * ua_type.</p>
       <div class="method_details ">
   <h3 class="signature " id="output_uuid-class_method">
   
-    .<strong>output_uuid</strong>(data)  &#x21d2; <tt>String</tt> 
+    .<strong>output_uuid</strong>(data, uuid_algorithm = nil)  &#x21d2; <tt>String</tt> 
   
 
   
@@ -1959,6 +2227,24 @@ fetch_type   * cookie   * no_redirect   * body   * ua_type.</p>
       
     </li>
   
+    <li>
+      
+        <span class='name'>uuid_algorithm</span>
+      
+      
+        <span class='type'>(<tt>Enumerator</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>(nil) Algorithm to use: sha256 (default), sha1, md5.</p>
+</div>
+      
+    </li>
+  
 </ul>
 
 <p class="tag_title">Returns:</p>
@@ -1981,17 +2267,17 @@ fetch_type   * cookie   * no_redirect   * body   * ua_type.</p>
       <pre class="lines">
 
 
-47
-48
-49
-50</pre>
+63
+64
+65
+66</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dh_easy/core/mock/fake_db.rb', line 47</span>
+      <pre class="code"><span class="info file"># File 'lib/dh_easy/core/mock/fake_db.rb', line 63</span>
 
-<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_output_uuid'>output_uuid</span> <span class='id identifier rubyid_data'>data</span>
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_output_uuid'>output_uuid</span> <span class='id identifier rubyid_data'>data</span><span class='comma'>,</span> <span class='id identifier rubyid_uuid_algorithm'>uuid_algorithm</span> <span class='op'>=</span> <span class='kw'>nil</span>
   <span class='id identifier rubyid_seed'>seed</span> <span class='op'>=</span> <span class='id identifier rubyid_data'>data</span><span class='period'>.</span><span class='id identifier rubyid_select'>select</span><span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='comma'>,</span><span class='id identifier rubyid_v'>v</span><span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^[^_]</span><span class='regexp_end'>/</span></span><span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_hash'>hash</span>
-  <span class='id identifier rubyid_fake_uuid'>fake_uuid</span> <span class='id identifier rubyid_seed'>seed</span>
+  <span class='id identifier rubyid_fake_uuid'>fake_uuid</span> <span class='id identifier rubyid_seed'>seed</span><span class='comma'>,</span> <span class='id identifier rubyid_uuid_algorithm'>uuid_algorithm</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -2059,17 +2345,17 @@ fetch_type   * cookie   * no_redirect   * body   * ua_type.</p>
       <pre class="lines">
 
 
-160
-161
-162
-163</pre>
+257
+258
+259
+260</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dh_easy/core/mock/fake_db.rb', line 160</span>
+      <pre class="code"><span class="info file"># File 'lib/dh_easy/core/mock/fake_db.rb', line 257</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_time_stamp'>time_stamp</span> <span class='id identifier rubyid_time'>time</span> <span class='op'>=</span> <span class='kw'>nil</span>
   <span class='id identifier rubyid_time'>time</span> <span class='op'>=</span> <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='kw'>if</span> <span class='id identifier rubyid_time'>time</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
-  <span class='id identifier rubyid_time'>time</span><span class='period'>.</span><span class='id identifier rubyid_utc'>utc</span><span class='period'>.</span><span class='id identifier rubyid_strftime'>strftime</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>%Y-%m-%dT%H:%M:%SZ</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_time'>time</span><span class='period'>.</span><span class='id identifier rubyid_utc'>utc</span><span class='period'>.</span><span class='id identifier rubyid_strftime'>strftime</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>%FT%T.%6N</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>[0.]+\Z</span><span class='regexp_end'>/</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Z</span><span class='tstring_end'>&quot;</span></span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -2129,12 +2415,12 @@ fetch_type   * cookie   * no_redirect   * body   * ua_type.</p>
       <pre class="lines">
 
 
-252
-253
-254</pre>
+364
+365
+366</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dh_easy/core/mock/fake_db.rb', line 252</span>
+      <pre class="code"><span class="info file"># File 'lib/dh_easy/core/mock/fake_db.rb', line 364</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_allow_job_id_override?'>allow_job_id_override?</span>
   <span class='ivar'>@allow_job_id_override</span> <span class='op'>||=</span> <span class='kw'>false</span>
@@ -2191,12 +2477,12 @@ fetch_type   * cookie   * no_redirect   * body   * ua_type.</p>
       <pre class="lines">
 
 
-234
-235
-236</pre>
+346
+347
+348</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dh_easy/core/mock/fake_db.rb', line 234</span>
+      <pre class="code"><span class="info file"># File 'lib/dh_easy/core/mock/fake_db.rb', line 346</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_allow_page_gid_override?'>allow_page_gid_override?</span>
   <span class='ivar'>@allow_page_gid_override</span> <span class='op'>||=</span> <span class='kw'>false</span>
@@ -2232,12 +2518,12 @@ fetch_type   * cookie   * no_redirect   * body   * ua_type.</p>
       <pre class="lines">
 
 
-244
-245
-246</pre>
+356
+357
+358</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dh_easy/core/mock/fake_db.rb', line 244</span>
+      <pre class="code"><span class="info file"># File 'lib/dh_easy/core/mock/fake_db.rb', line 356</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_disable_job_id_override'>disable_job_id_override</span>
   <span class='ivar'>@allow_job_id_override</span> <span class='op'>=</span> <span class='kw'>false</span>
@@ -2273,12 +2559,12 @@ fetch_type   * cookie   * no_redirect   * body   * ua_type.</p>
       <pre class="lines">
 
 
-226
-227
-228</pre>
+338
+339
+340</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dh_easy/core/mock/fake_db.rb', line 226</span>
+      <pre class="code"><span class="info file"># File 'lib/dh_easy/core/mock/fake_db.rb', line 338</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_disable_page_gid_override'>disable_page_gid_override</span>
   <span class='ivar'>@allow_page_gid_override</span> <span class='op'>=</span> <span class='kw'>false</span>
@@ -2314,12 +2600,12 @@ fetch_type   * cookie   * no_redirect   * body   * ua_type.</p>
       <pre class="lines">
 
 
-239
-240
-241</pre>
+351
+352
+353</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dh_easy/core/mock/fake_db.rb', line 239</span>
+      <pre class="code"><span class="info file"># File 'lib/dh_easy/core/mock/fake_db.rb', line 351</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_enable_job_id_override'>enable_job_id_override</span>
   <span class='ivar'>@allow_job_id_override</span> <span class='op'>=</span> <span class='kw'>true</span>
@@ -2355,12 +2641,12 @@ fetch_type   * cookie   * no_redirect   * body   * ua_type.</p>
       <pre class="lines">
 
 
-221
-222
-223</pre>
+333
+334
+335</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dh_easy/core/mock/fake_db.rb', line 221</span>
+      <pre class="code"><span class="info file"># File 'lib/dh_easy/core/mock/fake_db.rb', line 333</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_enable_page_gid_override'>enable_page_gid_override</span>
   <span class='ivar'>@allow_page_gid_override</span> <span class='op'>=</span> <span class='kw'>true</span>
@@ -2431,21 +2717,21 @@ fetch_type   * cookie   * no_redirect   * body   * ua_type.</p>
       <pre class="lines">
 
 
-170
-171
-172
-173
-174
-175
-176
-177
-178
-179
-180
-181</pre>
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dh_easy/core/mock/fake_db.rb', line 170</span>
+      <pre class="code"><span class="info file"># File 'lib/dh_easy/core/mock/fake_db.rb', line 267</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_ensure_job'>ensure_job</span> <span class='id identifier rubyid_target_job_id'>target_job_id</span> <span class='op'>=</span> <span class='kw'>nil</span>
   <span class='id identifier rubyid_target_job_id'>target_job_id</span> <span class='op'>=</span> <span class='id identifier rubyid_job_id'>job_id</span> <span class='kw'>if</span> <span class='id identifier rubyid_target_job_id'>target_job_id</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
@@ -2458,6 +2744,82 @@ fetch_type   * cookie   * no_redirect   * body   * ua_type.</p>
   <span class='id identifier rubyid_job'>job</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>status</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>active</span><span class='tstring_end'>&#39;</span></span> <span class='kw'>unless</span> <span class='id identifier rubyid_target_job_id'>target_job_id</span> <span class='op'>!=</span> <span class='id identifier rubyid_job_id'>job_id</span>
   <span class='id identifier rubyid_jobs'>jobs</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_job'>job</span>
   <span class='id identifier rubyid_jobs'>jobs</span><span class='period'>.</span><span class='id identifier rubyid_last'>last</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="fake_uuid-instance_method">
+  
+    #<strong>fake_uuid</strong>(seed = nil)  &#x21d2; <tt>String</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Generate a fake UUID using the configured uuid algorithm.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>seed</span>
+      
+      
+        <span class='type'>(<tt>nil</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Object to use as seed for uuid.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+394
+395
+396</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/dh_easy/core/mock/fake_db.rb', line 394</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_fake_uuid'>fake_uuid</span> <span class='id identifier rubyid_seed'>seed</span> <span class='op'>=</span> <span class='kw'>nil</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_fake_uuid'>fake_uuid</span> <span class='id identifier rubyid_seed'>seed</span><span class='comma'>,</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_uuid_algorithm'>uuid_algorithm</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -2503,12 +2865,12 @@ fetch_type   * cookie   * no_redirect   * body   * ua_type.</p>
       <pre class="lines">
 
 
-284
-285
-286</pre>
+408
+409
+410</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dh_easy/core/mock/fake_db.rb', line 284</span>
+      <pre class="code"><span class="info file"># File 'lib/dh_easy/core/mock/fake_db.rb', line 408</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_generate_job_id'>generate_job_id</span>
   <span class='id identifier rubyid_jobs'>jobs</span><span class='period'>.</span><span class='id identifier rubyid_count'>count</span> <span class='op'>&lt;</span> <span class='int'>1</span> <span class='op'>?</span> <span class='int'>1</span> <span class='op'>:</span> <span class='lparen'>(</span><span class='id identifier rubyid_jobs'>jobs</span><span class='period'>.</span><span class='id identifier rubyid_max'>max</span><span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_a'>a</span><span class='comma'>,</span><span class='id identifier rubyid_b'>b</span><span class='op'>|</span><span class='id identifier rubyid_a'>a</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>job_id</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>&lt;=&gt;</span> <span class='id identifier rubyid_b'>b</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>job_id</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rbrace'>}</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>job_id</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>+</span> <span class='int'>1</span><span class='rparen'>)</span>
@@ -2577,17 +2939,17 @@ fetch_type   * cookie   * no_redirect   * body   * ua_type.</p>
       <pre class="lines">
 
 
-407
-408
-409
-410</pre>
+600
+601
+602
+603</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dh_easy/core/mock/fake_db.rb', line 407</span>
+      <pre class="code"><span class="info file"># File 'lib/dh_easy/core/mock/fake_db.rb', line 600</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_generate_output_id'>generate_output_id</span> <span class='id identifier rubyid_data'>data</span>
   <span class='comment'># Generate random UUID to match Datahen behavior
-</span>  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_fake_uuid'>fake_uuid</span>
+</span>  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_fake_uuid'>fake_uuid</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -2663,47 +3025,85 @@ fetch_type   * cookie   * no_redirect   * body   * ua_type.</p>
       <pre class="lines">
 
 
-331
-332
-333
-334
-335
-336
-337
-338
-339
-340
-341
-342
-343
-344
-345
-346
-347
-348
-349</pre>
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486
+487
+488
+489
+490
+491
+492</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dh_easy/core/mock/fake_db.rb', line 331</span>
+      <pre class="code"><span class="info file"># File 'lib/dh_easy/core/mock/fake_db.rb', line 455</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_generate_page_gid'>generate_page_gid</span> <span class='id identifier rubyid_page_data'>page_data</span>
-  <span class='id identifier rubyid_fields'>fields</span> <span class='op'>=</span> <span class='lbracket'>[</span>
-    <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>url</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
-    <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>method</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
-    <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>headers</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
-    <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>fetch_type</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
-    <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>cookie</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
-    <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>no_redirect</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
-    <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>body</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
-    <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>ua_type</span><span class='tstring_end'>&#39;</span></span>
-  <span class='rbracket'>]</span>
-  <span class='id identifier rubyid_data'>data</span> <span class='op'>=</span> <span class='id identifier rubyid_page_data'>page_data</span><span class='period'>.</span><span class='id identifier rubyid_select'>select</span><span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='comma'>,</span><span class='id identifier rubyid_v'>v</span><span class='op'>|</span><span class='id identifier rubyid_fields'>fields</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span> <span class='id identifier rubyid_k'>k</span><span class='rbrace'>}</span>
-  <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>url</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_clean_uri'>clean_uri</span> <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>url</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
-  <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>headers</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_format_headers'>format_headers</span> <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>headers</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
-  <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>cookie</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../DhEasy.html" title="DhEasy (module)">DhEasy</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Core.html" title="DhEasy::Core (module)">Core</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Helper.html" title="DhEasy::Core::Helper (module)">Helper</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Helper/Cookie.html" title="DhEasy::Core::Helper::Cookie (class)">Cookie</a></span></span><span class='period'>.</span><span class='id identifier rubyid_parse_from_request'><span class='object_link'><a href="../Helper/Cookie.html#parse_from_request-class_method" title="DhEasy::Core::Helper::Cookie.parse_from_request (method)">parse_from_request</a></span></span> <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>cookie</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='kw'>unless</span> <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>cookie</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
-  <span class='id identifier rubyid_seed'>seed</span> <span class='op'>=</span> <span class='id identifier rubyid_data'>data</span><span class='period'>.</span><span class='id identifier rubyid_select'>select</span><span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='comma'>,</span><span class='id identifier rubyid_v'>v</span><span class='op'>|</span><span class='id identifier rubyid_fields'>fields</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span> <span class='id identifier rubyid_k'>k</span><span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_hash'>hash</span>
-  <span class='id identifier rubyid_checksum'>checksum</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_fake_uuid'>fake_uuid</span> <span class='id identifier rubyid_seed'>seed</span>
-  <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='const'>URI</span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>url</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_hostname'>hostname</span><span class='embexpr_end'>}</span><span class='tstring_content'>-</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_checksum'>checksum</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='comment'># ensure page url
+</span>  <span class='kw'>return</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='id identifier rubyid_page_data'>page_data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>url</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>||</span> <span class='id identifier rubyid_page_data'>page_data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>url</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_strip'>strip</span> <span class='op'>===</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span>
+
+  <span class='comment'># calculate extra fields, keep field order to match datahen
+</span>  <span class='id identifier rubyid_data'>data</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='id identifier rubyid_data'>data</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>method:</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_page_data'>page_data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>method</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_downcase'>downcase</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_no_url_encode'>no_url_encode</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='op'>!</span><span class='id identifier rubyid_page_data'>page_data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>no_url_encode</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='op'>!</span><span class='id identifier rubyid_page_data'>page_data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>no_url_encode</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_uri'>uri</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_clean_uri_obj'>clean_uri_obj</span><span class='lparen'>(</span><span class='id identifier rubyid_page_data'>page_data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>url</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_url'>url</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='id identifier rubyid_no_url_encode'>no_url_encode</span> <span class='op'>?</span> <span class='id identifier rubyid_page_data'>page_data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>url</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_lstrip'>lstrip</span> <span class='op'>:</span> <span class='id identifier rubyid_uri'>uri</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_data'>data</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>url:</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_url'>url</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_headers'>headers</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_format_headers'>format_headers</span> <span class='id identifier rubyid_page_data'>page_data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>headers</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+  <span class='id identifier rubyid_data'>data</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>headers:</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_headers'>headers</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_data'>data</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>body:</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_page_data'>page_data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>body</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_no_redirect'>no_redirect</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='op'>!</span><span class='id identifier rubyid_page_data'>page_data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>no_redirect</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='op'>!</span><span class='id identifier rubyid_page_data'>page_data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>no_redirect</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_data'>data</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>no_redirect:</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_no_redirect'>no_redirect</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_ua_type'>ua_type</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='id identifier rubyid_page_data'>page_data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>ua_type</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span> <span class='op'>===</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>desktop</span><span class='tstring_end'>&#39;</span></span> <span class='op'>:</span> <span class='id identifier rubyid_page_data'>page_data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>ua_type</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+  <span class='id identifier rubyid_data'>data</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ua_type:</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_ua_type'>ua_type</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+
+  <span class='comment'># complex fields
+</span>  <span class='id identifier rubyid_data'>data</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>fetch_type:</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_page_data'>page_data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>fetch_type</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>unless</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_is_default_fetch_type?'>is_default_fetch_type?</span> <span class='id identifier rubyid_page_data'>page_data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>fetch_type</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+  <span class='comment'># keep this cookie logic to match datahen
+</span>  <span class='id identifier rubyid_data'>data</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>cookie:</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_page_data'>page_data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>cookie</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_split'>split</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>;\s*</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_sort'>sort</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>;</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='id identifier rubyid_page_data'>page_data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>cookie</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_strip'>strip</span> <span class='op'>!=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span>
+  <span class='id identifier rubyid_data'>data</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>http2:true</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='id identifier rubyid_page_data'>page_data</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>http2</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='id identifier rubyid_page_data'>page_data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>http2</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='op'>!</span><span class='id identifier rubyid_page_data'>page_data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>http2</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+  <span class='id identifier rubyid_data'>data</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>driverName:</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_page_data'>page_data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>driver</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>name</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>unless</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_is_driver_empty?'>is_driver_empty?</span> <span class='id identifier rubyid_page_data'>page_data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>driver</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+  <span class='kw'>unless</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_is_display_empty?'>is_display_empty?</span> <span class='id identifier rubyid_page_data'>page_data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>display</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_data'>data</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>display:</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_page_data'>page_data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>display</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>width</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'>x</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_page_data'>page_data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>display</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>height</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+  <span class='kw'>unless</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_is_screenshot_empty?'>is_screenshot_empty?</span> <span class='id identifier rubyid_page_data'>page_data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>screenshot</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_checksum'>checksum</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_fake_uuid'>fake_uuid</span> <span class='const'>JSON</span><span class='period'>.</span><span class='id identifier rubyid_generate'>generate</span><span class='lparen'>(</span><span class='id identifier rubyid_page_data'>page_data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>screenshot</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_data'>data</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>screenshot:</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_checksum'>checksum</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># generate GID
+</span>  <span class='id identifier rubyid_seed'>seed</span> <span class='op'>=</span> <span class='id identifier rubyid_data'>data</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>|</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_checksum'>checksum</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_fake_uuid'>fake_uuid</span> <span class='id identifier rubyid_seed'>seed</span>
+  <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_uri'>uri</span><span class='period'>.</span><span class='id identifier rubyid_hostname'>hostname</span><span class='embexpr_end'>}</span><span class='tstring_content'>-</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_checksum'>checksum</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -2749,12 +3149,12 @@ fetch_type   * cookie   * no_redirect   * body   * ua_type.</p>
       <pre class="lines">
 
 
-277
-278
-279</pre>
+401
+402
+403</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dh_easy/core/mock/fake_db.rb', line 277</span>
+      <pre class="code"><span class="info file"># File 'lib/dh_easy/core/mock/fake_db.rb', line 401</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_generate_scraper_name'>generate_scraper_name</span>
   <span class='const'>Faker</span><span class='op'>::</span><span class='const'>Internet</span><span class='period'>.</span><span class='id identifier rubyid_unique'>unique</span><span class='period'>.</span><span class='id identifier rubyid_slug'>slug</span>
@@ -2803,12 +3203,12 @@ fetch_type   * cookie   * no_redirect   * body   * ua_type.</p>
       <pre class="lines">
 
 
-198
-199
-200</pre>
+295
+296
+297</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dh_easy/core/mock/fake_db.rb', line 198</span>
+      <pre class="code"><span class="info file"># File 'lib/dh_easy/core/mock/fake_db.rb', line 295</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_job_id'>job_id</span>
   <span class='ivar'>@job_id</span> <span class='op'>||=</span> <span class='id identifier rubyid_generate_job_id'>generate_job_id</span>
@@ -2844,14 +3244,14 @@ fetch_type   * cookie   * no_redirect   * body   * ua_type.</p>
       <pre class="lines">
 
 
-203
-204
-205
-206
-207</pre>
+300
+301
+302
+303
+304</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dh_easy/core/mock/fake_db.rb', line 203</span>
+      <pre class="code"><span class="info file"># File 'lib/dh_easy/core/mock/fake_db.rb', line 300</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_job_id='>job_id=</span> <span class='id identifier rubyid_value'>value</span>
   <span class='ivar'>@job_id</span> <span class='op'>=</span> <span class='id identifier rubyid_value'>value</span>
@@ -2902,22 +3302,22 @@ fetch_type   * cookie   * no_redirect   * body   * ua_type.</p>
       <pre class="lines">
 
 
-304
-305
-306
-307
-308
-309
-310
-311
-312
-313
-314
-315
-316</pre>
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dh_easy/core/mock/fake_db.rb', line 304</span>
+      <pre class="code"><span class="info file"># File 'lib/dh_easy/core/mock/fake_db.rb', line 428</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_jobs'>jobs</span>
   <span class='kw'>return</span> <span class='ivar'>@jobs</span> <span class='kw'>unless</span> <span class='ivar'>@jobs</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
@@ -2976,28 +3376,28 @@ fetch_type   * cookie   * no_redirect   * body   * ua_type.</p>
       <pre class="lines">
 
 
-428
-429
-430
-431
-432
-433
-434
-435
-436
-437
-438
-439
-440
-441
-442
-443
-444
-445
-446</pre>
+621
+622
+623
+624
+625
+626
+627
+628
+629
+630
+631
+632
+633
+634
+635
+636
+637
+638
+639</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dh_easy/core/mock/fake_db.rb', line 428</span>
+      <pre class="code"><span class="info file"># File 'lib/dh_easy/core/mock/fake_db.rb', line 621</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_outputs'>outputs</span>
   <span class='kw'>return</span> <span class='ivar'>@outputs</span> <span class='kw'>unless</span> <span class='ivar'>@outputs</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
@@ -3062,15 +3462,15 @@ fetch_type   * cookie   * no_redirect   * body   * ua_type.</p>
       <pre class="lines">
 
 
-211
-212
-213</pre>
+308
+309
+310</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dh_easy/core/mock/fake_db.rb', line 211</span>
+      <pre class="code"><span class="info file"># File 'lib/dh_easy/core/mock/fake_db.rb', line 308</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_page_gid'>page_gid</span>
-  <span class='ivar'>@page_gid</span> <span class='op'>||=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_fake_uuid'>fake_uuid</span>
+  <span class='ivar'>@page_gid</span> <span class='op'>||=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_fake_uuid'>fake_uuid</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -3103,12 +3503,12 @@ fetch_type   * cookie   * no_redirect   * body   * ua_type.</p>
       <pre class="lines">
 
 
-216
-217
-218</pre>
+313
+314
+315</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dh_easy/core/mock/fake_db.rb', line 216</span>
+      <pre class="code"><span class="info file"># File 'lib/dh_easy/core/mock/fake_db.rb', line 313</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_page_gid='>page_gid=</span> <span class='id identifier rubyid_value'>value</span>
   <span class='ivar'>@page_gid</span> <span class='op'>=</span> <span class='id identifier rubyid_value'>value</span>
@@ -3133,8 +3533,7 @@ fetch_type   * cookie   * no_redirect   * body   * ua_type.</p>
   <div class="note notetag">
     <strong>Note:</strong>
     <div class='inline'>
-<p>Page gid will be replaced on insert by an auto generated uuid unless page
-gid overriding is enabled (see #allow_page_gid_override?)</p>
+<p>Page gid will be replaced on insert by an auto generated uuid unless page gid overriding is enabled (see #allow_page_gid_override?)</p>
 </div>
   </div>
 
@@ -3166,45 +3565,91 @@ gid overriding is enabled (see #allow_page_gid_override?)</p>
       <pre class="lines">
 
 
-380
-381
-382
-383
-384
-385
-386
-387
-388
-389
-390
-391
-392
-393
-394
-395
-396
-397
-398
-399
-400</pre>
+550
+551
+552
+553
+554
+555
+556
+557
+558
+559
+560
+561
+562
+563
+564
+565
+566
+567
+568
+569
+570
+571
+572
+573
+574
+575
+576
+577
+578
+579
+580
+581
+582
+583
+584
+585
+586
+587
+588
+589
+590
+591
+592
+593</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dh_easy/core/mock/fake_db.rb', line 380</span>
+      <pre class="code"><span class="info file"># File 'lib/dh_easy/core/mock/fake_db.rb', line 550</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_pages'>pages</span>
   <span class='kw'>return</span> <span class='ivar'>@pages</span> <span class='kw'>unless</span> <span class='ivar'>@page</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
 
+  <span class='id identifier rubyid_defaults'>defaults</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_page_defaults'>page_defaults</span>
   <span class='id identifier rubyid_collection'>collection</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_new_collection'>new_collection</span> <span class='const'><span class='object_link'><a href="#PAGE_KEYS-constant" title="DhEasy::Core::Mock::FakeDb::PAGE_KEYS (constant)">PAGE_KEYS</a></span></span><span class='comma'>,</span>
-    <span class='label'>defaults:</span> <span class='id identifier rubyid_page_defaults'>page_defaults</span>
+    <span class='label'>defaults:</span> <span class='id identifier rubyid_defaults'>defaults</span>
   <span class='id identifier rubyid_collection'>collection</span><span class='period'>.</span><span class='id identifier rubyid_bind_event'>bind_event</span><span class='lparen'>(</span><span class='symbol'>:before_defaults</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_collection'>collection</span><span class='comma'>,</span> <span class='id identifier rubyid_raw_item'>raw_item</span><span class='op'>|</span>
     <span class='id identifier rubyid_item'>item</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../DhEasy.html" title="DhEasy (module)">DhEasy</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Core.html" title="DhEasy::Core (module)">Core</a></span></span><span class='period'>.</span><span class='id identifier rubyid_deep_stringify_keys'><span class='object_link'><a href="../../Core.html#deep_stringify_keys-class_method" title="DhEasy::Core.deep_stringify_keys (method)">deep_stringify_keys</a></span></span> <span class='id identifier rubyid_raw_item'>raw_item</span>
+    <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_item'>item</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>driver</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_item'>item</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>driver</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Hash</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_item'>item</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>driver</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_defaults'>defaults</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>driver</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_merge'>merge</span> <span class='id identifier rubyid_item'>item</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>driver</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+    <span class='kw'>end</span>
+    <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_item'>item</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>display</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_item'>item</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>display</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Hash</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_item'>item</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>display</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_defaults'>defaults</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>display</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_merge'>merge</span> <span class='id identifier rubyid_item'>item</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>display</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+    <span class='kw'>end</span>
+    <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_item'>item</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>screenshot</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_item'>item</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>screenshot</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Hash</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_item'>item</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>screenshot</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_defaults'>defaults</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>screenshot</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_merge'>merge</span> <span class='id identifier rubyid_item'>item</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>screenshot</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+    <span class='kw'>end</span>
     <span class='id identifier rubyid_item'>item</span><span class='period'>.</span><span class='id identifier rubyid_delete'>delete</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>job_id</span><span class='tstring_end'>&#39;</span></span> <span class='kw'>unless</span> <span class='id identifier rubyid_allow_job_id_override?'>allow_job_id_override?</span>
     <span class='id identifier rubyid_item'>item</span>
   <span class='kw'>end</span>
   <span class='id identifier rubyid_collection'>collection</span><span class='period'>.</span><span class='id identifier rubyid_bind_event'>bind_event</span><span class='lparen'>(</span><span class='symbol'>:before_insert</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_collection'>collection</span><span class='comma'>,</span> <span class='id identifier rubyid_item'>item</span><span class='comma'>,</span> <span class='id identifier rubyid_match'>match</span><span class='op'>|</span>
+    <span class='id identifier rubyid_item'>item</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>driver</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='kw'>nil</span> <span class='kw'>if</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_is_driver_empty?'>is_driver_empty?</span> <span class='id identifier rubyid_item'>item</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>driver</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_item'>item</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>display</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='kw'>nil</span> <span class='kw'>if</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_is_display_empty?'>is_display_empty?</span> <span class='id identifier rubyid_item'>item</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>display</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_item'>item</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>screenshot</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='kw'>nil</span> <span class='kw'>if</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_is_screenshot_empty?'>is_screenshot_empty?</span> <span class='id identifier rubyid_item'>item</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>screenshot</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_item'>item</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>headers</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='kw'>nil</span> <span class='kw'>if</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_is_hash_empty?'>is_hash_empty?</span> <span class='id identifier rubyid_item'>item</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>headers</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_item'>item</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>vars</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='kw'>nil</span> <span class='kw'>if</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_is_hash_empty?'>is_hash_empty?</span> <span class='id identifier rubyid_item'>item</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>vars</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_uri'>uri</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_clean_uri_obj'>clean_uri_obj</span><span class='lparen'>(</span><span class='id identifier rubyid_item'>item</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>url</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_item'>item</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>hostname</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_uri'>uri</span><span class='period'>.</span><span class='id identifier rubyid_hostname'>hostname</span>
+    <span class='id identifier rubyid_uri'>uri</span> <span class='op'>=</span> <span class='kw'>nil</span>
     <span class='kw'>if</span> <span class='id identifier rubyid_item'>item</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>gid</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>||</span> <span class='op'>!</span><span class='id identifier rubyid_allow_page_gid_override?'>allow_page_gid_override?</span>
       <span class='id identifier rubyid_item'>item</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>gid</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_generate_page_gid'>generate_page_gid</span> <span class='id identifier rubyid_item'>item</span>
     <span class='kw'>end</span>
+
+    <span class='comment'># 30 days = 60 * 60 * 24 * 30 = 2592000
+</span>    <span class='id identifier rubyid_item'>item</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>freshness</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>||=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_time_stamp'>time_stamp</span> <span class='lparen'>(</span><span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span> <span class='op'>-</span> <span class='int'>2592000</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_item'>item</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>to_fetch</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>||=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_time_stamp'>time_stamp</span>
+    <span class='id identifier rubyid_item'>item</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>created_at</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>||=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_time_stamp'>time_stamp</span>
     <span class='id identifier rubyid_item'>item</span>
   <span class='kw'>end</span>
   <span class='id identifier rubyid_collection'>collection</span><span class='period'>.</span><span class='id identifier rubyid_bind_event'>bind_event</span><span class='lparen'>(</span><span class='symbol'>:after_insert</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_collection'>collection</span><span class='comma'>,</span> <span class='id identifier rubyid_item'>item</span><span class='op'>|</span>
@@ -3232,8 +3677,7 @@ gid overriding is enabled (see #allow_page_gid_override?)</p>
   <div class="note notetag">
     <strong>Note:</strong>
     <div class='inline'>
-<p><em>Warning:</em> It uses table scan to filter and should be used on test
-suites only.</p>
+<p><em>Warning:</em> It uses table scan to filter and should be used on test suites only.</p>
 </div>
   </div>
 
@@ -3342,39 +3786,39 @@ suites only.</p>
       <pre class="lines">
 
 
-475
-476
-477
-478
-479
-480
-481
-482
-483
-484
-485
-486
-487
-488
-489
-490
-491
-492
-493
-494
-495
-496
-497
-498
-499
-500
-501
-502
-503
-504</pre>
+668
+669
+670
+671
+672
+673
+674
+675
+676
+677
+678
+679
+680
+681
+682
+683
+684
+685
+686
+687
+688
+689
+690
+691
+692
+693
+694
+695
+696
+697</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dh_easy/core/mock/fake_db.rb', line 475</span>
+      <pre class="code"><span class="info file"># File 'lib/dh_easy/core/mock/fake_db.rb', line 668</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_query'>query</span> <span class='id identifier rubyid_collection'>collection</span><span class='comma'>,</span> <span class='id identifier rubyid_filter'>filter</span><span class='comma'>,</span> <span class='id identifier rubyid_offset'>offset</span> <span class='op'>=</span> <span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_limit'>limit</span> <span class='op'>=</span> <span class='kw'>nil</span>
   <span class='kw'>return</span> <span class='lbracket'>[</span><span class='rbracket'>]</span> <span class='kw'>unless</span> <span class='id identifier rubyid_limit'>limit</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>||</span> <span class='id identifier rubyid_limit'>limit</span> <span class='op'>&gt;</span> <span class='int'>0</span>
@@ -3486,41 +3930,41 @@ suites only.</p>
       <pre class="lines">
 
 
-510
-511
-512
-513
-514
-515
-516
-517
-518
-519
-520
-521
-522
-523
-524
-525
-526
-527
-528
-529
-530
-531
-532
-533
-534
-535
-536
-537
-538
-539
-540
-541</pre>
+703
+704
+705
+706
+707
+708
+709
+710
+711
+712
+713
+714
+715
+716
+717
+718
+719
+720
+721
+722
+723
+724
+725
+726
+727
+728
+729
+730
+731
+732
+733
+734</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dh_easy/core/mock/fake_db.rb', line 510</span>
+      <pre class="code"><span class="info file"># File 'lib/dh_easy/core/mock/fake_db.rb', line 703</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_refetch'>refetch</span> <span class='id identifier rubyid_job_id'>job_id</span><span class='comma'>,</span> <span class='id identifier rubyid_gid'>gid</span>
   <span class='id identifier rubyid_page'>page</span> <span class='op'>=</span> <span class='id identifier rubyid_pages'>pages</span><span class='period'>.</span><span class='id identifier rubyid_find_match'>find_match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>gid</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_gid'>gid</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>job_id</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_job_id'>job_id</span><span class='rparen'>)</span>
@@ -3634,20 +4078,20 @@ suites only.</p>
       <pre class="lines">
 
 
-547
-548
-549
-550
-551
-552
-553
-554
-555
-556
-557</pre>
+740
+741
+742
+743
+744
+745
+746
+747
+748
+749
+750</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dh_easy/core/mock/fake_db.rb', line 547</span>
+      <pre class="code"><span class="info file"># File 'lib/dh_easy/core/mock/fake_db.rb', line 740</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_reparse'>reparse</span> <span class='id identifier rubyid_job_id'>job_id</span><span class='comma'>,</span> <span class='id identifier rubyid_gid'>gid</span>
   <span class='id identifier rubyid_page'>page</span> <span class='op'>=</span> <span class='id identifier rubyid_pages'>pages</span><span class='period'>.</span><span class='id identifier rubyid_find_match'>find_match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>gid</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_gid'>gid</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>job_id</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_job_id'>job_id</span><span class='rparen'>)</span>
@@ -3704,12 +4148,12 @@ suites only.</p>
       <pre class="lines">
 
 
-185
-186
-187</pre>
+282
+283
+284</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dh_easy/core/mock/fake_db.rb', line 185</span>
+      <pre class="code"><span class="info file"># File 'lib/dh_easy/core/mock/fake_db.rb', line 282</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_scraper_name'>scraper_name</span>
   <span class='ivar'>@scraper_name</span> <span class='op'>||=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>my_scraper</span><span class='tstring_end'>&#39;</span></span>
@@ -3745,14 +4189,14 @@ suites only.</p>
       <pre class="lines">
 
 
-190
-191
-192
-193
-194</pre>
+287
+288
+289
+290
+291</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dh_easy/core/mock/fake_db.rb', line 190</span>
+      <pre class="code"><span class="info file"># File 'lib/dh_easy/core/mock/fake_db.rb', line 287</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_scraper_name='>scraper_name=</span> <span class='id identifier rubyid_value'>value</span>
   <span class='id identifier rubyid_job'>job</span> <span class='op'>=</span> <span class='id identifier rubyid_ensure_job'>ensure_job</span>
@@ -3764,14 +4208,133 @@ suites only.</p>
 </table>
 </div>
     
+      <div class="method_details ">
+  <h3 class="signature " id="uuid_algorithm-instance_method">
+  
+    #<strong>uuid_algorithm</strong>  &#x21d2; <tt>Enumerator</tt><sup>?</sup> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Current UUID algorithm.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Enumerator</tt>, <tt>nil</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+319
+320
+321</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/dh_easy/core/mock/fake_db.rb', line 319</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_uuid_algorithm'>uuid_algorithm</span>
+  <span class='ivar'>@uuid_algorithm</span> <span class='op'>||=</span> <span class='const'><span class='object_link'><a href="#DEFAULT_UUID_ALGORITHM-constant" title="DhEasy::Core::Mock::FakeDb::DEFAULT_UUID_ALGORITHM (constant)">DEFAULT_UUID_ALGORITHM</a></span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="uuid_algorithm=-instance_method">
+  
+    #<strong>uuid_algorithm=</strong>(value)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Set current UUID algorithm value.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>ArgumentError</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Whenever an invalid algorithm is provided</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+325
+326
+327
+328
+329
+330</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/dh_easy/core/mock/fake_db.rb', line 325</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_uuid_algorithm='>uuid_algorithm=</span> <span class='id identifier rubyid_value'>value</span>
+  <span class='kw'>unless</span> <span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>||</span> <span class='const'><span class='object_link'><a href="#VALID_UUID_ALGORITHMS-constant" title="DhEasy::Core::Mock::FakeDb::VALID_UUID_ALGORITHMS (constant)">VALID_UUID_ALGORITHMS</a></span></span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Invalid UUID algorithm, valid values are :md5, :sha1, :sha256</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+  <span class='ivar'>@uuid_algorithm</span> <span class='op'>=</span> <span class='id identifier rubyid_value'>value</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
   </div>
 
 </div>
 
       <div id="footer">
-  Generated on Wed Dec  4 23:00:02 2019 by
+  Generated on Sun May 23 08:36:55 2021 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.20 (ruby-2.5.3).
+  0.9.24 (ruby-2.6.5).
 </div>
 
     </div>

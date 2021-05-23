@@ -6,15 +6,15 @@
 <title>
   Module: DhEasy::Core::Mock::FakeExecutor
   
-    &mdash; Documentation by YARD 0.9.20
+    &mdash; Documentation by YARD 0.9.24
   
 </title>
 
-  <link rel="stylesheet" href="../../../css/style.css" type="text/css" charset="utf-8" />
+  <link rel="stylesheet" href="../../../css/style.css" type="text/css" />
 
-  <link rel="stylesheet" href="../../../css/common.css" type="text/css" charset="utf-8" />
+  <link rel="stylesheet" href="../../../css/common.css" type="text/css" />
 
-<script type="text/javascript" charset="utf-8">
+<script type="text/javascript">
   pathId = "DhEasy::Core::Mock::FakeExecutor";
   relpath = '../../../';
 </script>
@@ -751,8 +751,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Save a job collection on db and remove all the element from
-<code>list</code>.</p>
+<p>Save a job collection on db and remove all the element from <code>list</code>.</p>
 </div></span>
   
 </li>
@@ -776,8 +775,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Save an output collection on db and remove all the element from  
-<code>list</code>.</p>
+<p>Save an output collection on db and remove all the element from   <code>list</code>.</p>
 </div></span>
   
 </li>
@@ -801,8 +799,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Save a page collection on db and remove all the element from
-<code>list</code>.</p>
+<p>Save a page collection on db and remove all the element from <code>list</code>.</p>
 </div></span>
   
 </li>
@@ -1142,13 +1139,13 @@
       <pre class="lines">
 
 
+341
 342
 343
-344
-345</pre>
+344</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dh_easy/core/mock/fake_executor.rb', line 342</span>
+      <pre class="code"><span class="info file"># File 'lib/dh_easy/core/mock/fake_executor.rb', line 341</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_execute_script'>execute_script</span> <span class='id identifier rubyid_file_path'>file_path</span><span class='comma'>,</span> <span class='id identifier rubyid_vars'>vars</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
   <span class='id identifier rubyid_eval'>eval</span><span class='lparen'>(</span><span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_read'>read</span><span class='lparen'>(</span><span class='id identifier rubyid_file_path'>file_path</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_isolated_binding'>isolated_binding</span><span class='lparen'>(</span><span class='id identifier rubyid_vars'>vars</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_file_path'>file_path</span><span class='rparen'>)</span>
@@ -1174,9 +1171,7 @@
   <div class="note notetag">
     <strong>Note:</strong>
     <div class='inline'>
-<p>*opts `:job_id` option is prioritize over `:scraper_name` when both exists.
-If none add provided or nil values, then current job will be used to query
-instead, this is the defaul behavior.</p>
+<p>*opts `:job_id` option is prioritize over `:scraper_name` when both exists. If none add provided or nil values, then current job will be used to query instead, this is the defaul behavior.</p>
 </div>
   </div>
 
@@ -1371,13 +1366,13 @@ instead, this is the defaul behavior.</p>
       <pre class="lines">
 
 
+333
 334
 335
-336
-337</pre>
+336</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dh_easy/core/mock/fake_executor.rb', line 334</span>
+      <pre class="code"><span class="info file"># File 'lib/dh_easy/core/mock/fake_executor.rb', line 333</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_find_output'>find_output</span> <span class='id identifier rubyid_collection'>collection</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>default</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_query'>query</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='comma'>,</span> <span class='id identifier rubyid_opts'>opts</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
   <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='id identifier rubyid_find_outputs'>find_outputs</span><span class='lparen'>(</span><span class='id identifier rubyid_collection'>collection</span><span class='comma'>,</span> <span class='id identifier rubyid_query'>query</span><span class='comma'>,</span> <span class='int'>1</span><span class='comma'>,</span> <span class='int'>1</span><span class='comma'>,</span> <span class='id identifier rubyid_opts'>opts</span><span class='rparen'>)</span>
@@ -1403,9 +1398,7 @@ instead, this is the defaul behavior.</p>
   <div class="note notetag">
     <strong>Note:</strong>
     <div class='inline'>
-<p>*opts `:job_id` option is prioritize over `:scraper_name` when both exists.
-If none add provided or nil values, then current job will be used to query
-instead, this is the defaul behavior.</p>
+<p>*opts `:job_id` option is prioritize over `:scraper_name` when both exists. If none add provided or nil values, then current job will be used to query instead, this is the defaul behavior.</p>
 </div>
   </div>
 
@@ -1691,8 +1684,7 @@ instead, this is the defaul behavior.</p>
 300
 301
 302
-303
-304</pre>
+303</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/dh_easy/core/mock/fake_executor.rb', line 286</span>
@@ -1707,7 +1699,6 @@ instead, this is the defaul behavior.</p>
     <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>per_page needs to be an Integer between 1 and </span><span class='embexpr_beg'>#{</span><span class='const'><span class='object_link'><a href="#MAX_FIND_OUTPUTS_PER_PAGE-constant" title="DhEasy::Core::Mock::FakeExecutor::MAX_FIND_OUTPUTS_PER_PAGE (constant)">MAX_FIND_OUTPUTS_PER_PAGE</a></span></span><span class='embexpr_end'>}</span><span class='tstring_content'>.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
   <span class='kw'>end</span>
 
-  <span class='id identifier rubyid_count'>count</span> <span class='op'>=</span> <span class='int'>0</span>
   <span class='id identifier rubyid_offset'>offset</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='id identifier rubyid_page'>page</span> <span class='op'>-</span> <span class='int'>1</span><span class='rparen'>)</span> <span class='op'>*</span> <span class='id identifier rubyid_per_page'>per_page</span>
   <span class='id identifier rubyid_job'>job</span> <span class='op'>=</span> <span class='id identifier rubyid_latest_job_by'>latest_job_by</span><span class='lparen'>(</span><span class='id identifier rubyid_opts'>opts</span><span class='lbracket'>[</span><span class='symbol'>:scraper_name</span><span class='rbracket'>]</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_fixed_query'>fixed_query</span> <span class='op'>=</span> <span class='id identifier rubyid_query'>query</span><span class='period'>.</span><span class='id identifier rubyid_merge'>merge</span><span class='lparen'>(</span>
@@ -2555,17 +2546,17 @@ instead, this is the defaul behavior.</p>
       <pre class="lines">
 
 
+349
 350
 351
 352
 353
 354
 355
-356
-357</pre>
+356</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dh_easy/core/mock/fake_executor.rb', line 350</span>
+      <pre class="code"><span class="info file"># File 'lib/dh_easy/core/mock/fake_executor.rb', line 349</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_refetch'>refetch</span> <span class='id identifier rubyid_gid'>gid</span>
   <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>gid needs to be a String.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='id identifier rubyid_gid'>gid</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>String</span><span class='rparen'>)</span>
@@ -2742,17 +2733,17 @@ instead, this is the defaul behavior.</p>
       <pre class="lines">
 
 
+361
 362
 363
 364
 365
 366
 367
-368
-369</pre>
+368</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dh_easy/core/mock/fake_executor.rb', line 362</span>
+      <pre class="code"><span class="info file"># File 'lib/dh_easy/core/mock/fake_executor.rb', line 361</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_reparse'>reparse</span> <span class='id identifier rubyid_page_gid'>page_gid</span>
   <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>page_gid needs to be a String.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='id identifier rubyid_page_gid'>page_gid</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>String</span><span class='rparen'>)</span>
@@ -2874,8 +2865,7 @@ instead, this is the defaul behavior.</p>
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Save a job collection on db and remove all the element from
-<code>list</code>.</p>
+<p>Save a job collection on db and remove all the element from <code>list</code>.</p>
 
 
   </div>
@@ -3004,8 +2994,7 @@ instead, this is the defaul behavior.</p>
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Save a page collection on db and remove all the element from
-<code>list</code>.</p>
+<p>Save a page collection on db and remove all the element from <code>list</code>.</p>
 
 
   </div>
@@ -3279,9 +3268,9 @@ instead, this is the defaul behavior.</p>
 </div>
 
       <div id="footer">
-  Generated on Wed Dec  4 23:00:02 2019 by
+  Generated on Sun May 23 08:36:54 2021 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.20 (ruby-2.5.3).
+  0.9.24 (ruby-2.6.5).
 </div>
 
     </div>
