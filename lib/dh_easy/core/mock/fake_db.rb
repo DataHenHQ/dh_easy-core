@@ -18,6 +18,12 @@ module DhEasy
         }
         # Default collection for saved outputs
         DEFAULT_COLLECTION = 'default'
+        # Default page's fetch type
+        DEFAULT_FETCH_TYPE = 'standard'
+        # Default uuid algorithm
+        DEFAULT_UUID_ALGORITHM = :md5
+        # Valid uuid algorithms
+        VALID_UUID_ALGORITHMS = [:md5, :sha1, :sha256]
 
         # Generate a smart collection with keys and initial values.
         #
@@ -32,21 +38,31 @@ module DhEasy
         # Generate a fake UUID.
         #
         # @param seed (nil) Object to use as seed for uuid.
+        # @param [Enumerator] algorithm (nil) Algorithm to use: sha256 (default), sha1, md5.
         #
         # @return [String]
-        def self.fake_uuid seed = nil
+        def self.fake_uuid seed = nil, algorithm = nil
           seed ||= (Time.new.to_f + rand)
-          Digest::SHA1.hexdigest seed.to_s
+          algorithm ||= DEFAULT_UUID_ALGORITHM
+          case algorithm
+          when :sha256
+            Digest::SHA256.hexdigest seed.to_s
+          when :sha1
+            Digest::SHA1.hexdigest seed.to_s
+          else
+            Digest::MD5.hexdigest seed.to_s
+          end
         end
 
         # Generate a fake UUID based on output fields without `_` prefix.
         #
         # @param [Hash] data Output data.
+        # @param [Enumerator] algorithm (nil) Algorithm to use: sha256 (default), sha1, md5.
         #
         # @return [String]
-        def self.output_uuid data
+        def self.output_uuid data, uuid_algorithm = nil
           seed = data.select{|k,v|k.to_s =~ /^[^_]/}.hash
-          fake_uuid seed
+          fake_uuid seed, uuid_algorithm
         end
 
         # Build a page with defaults by using FakeDb engine.
@@ -83,8 +99,8 @@ module DhEasy
         #
         # @param [String] raw_url URL to clean.
         #
-        # @return [String]
-        def self.clean_uri raw_url
+        # @return [URI::HTTPS]
+        def self.clean_uri_obj raw_url
           url = URI.parse(raw_url)
           url.hostname = url.hostname.downcase
           url.fragment = nil
@@ -101,7 +117,17 @@ module DhEasy
             end
             url.query = data.join('&')
           end
-          url.to_s
+          url
+        end
+
+        # Clean an URL to remove fragment, lowercase schema and host, and sort
+        #   query string.
+        #
+        # @param [String] raw_url URL to clean.
+        #
+        # @return [String]
+        def self.clean_uri raw_url
+          clean_uri_obj(raw_url).to_s
         end
 
         # Format headers for gid generation.
@@ -111,16 +137,87 @@ module DhEasy
         #
         # @return [Hash]
         def self.format_headers headers
-          return {} if headers.nil?
-          data = {}
+          return '' if headers.nil?
+          data = []
           headers.each do |key, value|
             unless value.is_a? Array
-              data[key] = value
+              data << "#{key.downcase}:#{value.to_s}"
               next
             end
-            data[key] = value.sort
+            data << "#{key.downcase}:#{value.sort.join ','}"
           end
-          data
+          data.sort.join ';'
+        end
+
+        # Identify whenever it has a default_fetch_type.
+        # @private
+        #
+        # @param [String,nil] fetch_type Fetch type.
+        #
+        # @return [Boolean] `true` when default value, else `false`.
+        def self.is_default_fetch_type? fetch_type
+          return true if fetch_type.nil?
+          return true if fetch_type === DEFAULT_FETCH_TYPE
+          false
+        end
+
+        # Identify whenever a driver hash is empty.
+        # @private
+        #
+        # @param [Hash,nil] driver Driver hash.
+        #
+        # @return [Boolean] `true` when empty, else `false`.
+        def self.is_driver_empty? driver
+          return true if driver.nil?
+          return true unless driver.is_a? Hash
+          return false if driver['name'].to_s.strip != ''
+          return false if driver['code'].to_s.strip != ''
+          return false if driver['pre_code'].to_s.strip != ''
+          return false if !driver['stealth'].nil? && !!driver['stealth']
+          return false if !driver['enable_images'].nil? && !!driver['enable_images']
+          return false if !driver['goto_options'].nil? && driver['goto_options'].is_a?(Hash) && driver['goto_options'].keys.length > 0
+          true
+        end
+
+        # Identify whenever a display hash is empty.
+        # @private
+        #
+        # @param [Hash,nil] display Display hash.
+        #
+        # @return [Boolean] `true` when empty, else `false`.
+        def self.is_display_empty? display
+          return true if display.nil?
+          return true unless display.is_a? Hash
+          return false if !display['width'].nil? && display['width'].to_f.ceil > 0
+          return false if !display['height'].nil? && display['height'].to_f.ceil > 0
+          true
+        end
+
+        # Identify whenever a screenshot hash is empty.
+        # @private
+        #
+        # @param [Hash,nil] screenshot Screenshot hash.
+        #
+        # @return [Boolean] `true` when empty, else `false`.
+        def self.is_screenshot_empty? screenshot
+          return true if screenshot.nil?
+          return true unless screenshot.is_a? Hash
+          return true if screenshot['take_screenshot'].nil? || !screenshot['take_screenshot']
+          return false if !screenshot['options'].nil? && screenshot['options'].is_a?(Hash) && screenshot['options'].keys.length > 0
+          true
+        end
+
+        # Identify whenever a hash is empty.
+        # @private
+        #
+        # @param [Hash,nil] hash Hash to validate.
+        #
+        # @return [Boolean] `true` when empty, else `false`.
+        def self.is_hash_empty? hash
+          return true if hash.nil?
+          return true unless hash.is_a? Hash
+          return false if hash.keys.length > 0
+          true
         end
 
         # Build a job with defaults by using FakeDb engine.
@@ -159,7 +256,7 @@ module DhEasy
         # @return [String]
         def self.time_stamp time = nil
           time = Time.new if time.nil?
-          time.utc.strftime('%Y-%m-%dT%H:%M:%SZ')
+          time.utc.strftime('%FT%T.%6N').gsub(/[0.]+\Z/,'') << "Z"
         end
 
         # Get current job or create new one from values.
@@ -209,12 +306,27 @@ module DhEasy
         # Current fake page gid.
         # @return [Integer,nil]
         def page_gid
-          @page_gid ||= self.class.fake_uuid
+          @page_gid ||= self.fake_uuid
         end
 
         # Set current fake page gid value.
         def page_gid= value
           @page_gid = value
+        end
+
+        # Current UUID algorithm.
+        # @return [Enumerator,nil]
+        def uuid_algorithm
+          @uuid_algorithm ||= DEFAULT_UUID_ALGORITHM
+        end
+
+        # Set current UUID algorithm value.
+        # @error [ArgumentError] Whenever an invalid algorithm is provided
+        def uuid_algorithm= value
+          unless value.nil? || VALID_UUID_ALGORITHMS.include?(value)
+            raise ArgumentError.new("Invalid UUID algorithm, valid values are :md5, :sha1, :sha256")
+          end
+          @uuid_algorithm = value
         end
 
         # Enable page gid override on page or output insert.
@@ -263,12 +375,24 @@ module DhEasy
         #   whenever page gid can be overrided on page or output insert.
         # @option opts [Boolean, nil] :allow_job_id_override (false) Specify
         #   whenever job id can be overrided on page or output insert.
+        # @option opts [Enumerator, nil] :uuid_algorithm (:md5) Specify the
+        #   algorithm to be used to generate UUID values.
         def initialize opts = {}
           self.job_id = opts[:job_id]
           self.scraper_name = opts[:scraper_name]
           self.page_gid = opts[:page_gid]
+          self.uuid_algorithm = opts[:uuid_algorithm]
           @allow_page_gid_override = opts[:allow_page_gid_override].nil? ? false : !!opts[:allow_page_gid_override]
           @allow_job_id_override = opts[:allow_job_id_override].nil? ? false : !!opts[:allow_job_id_override]
+        end
+
+        # Generate a fake UUID using the configured uuid algorithm.
+        #
+        # @param seed (nil) Object to use as seed for uuid.
+        #
+        # @return [String]
+        def fake_uuid seed = nil
+          self.class.fake_uuid seed, self.uuid_algorithm
         end
 
         # Generate a fake scraper name.
@@ -329,23 +453,42 @@ module DhEasy
         #
         # @return [String]
         def generate_page_gid page_data
-          fields = [
-            'url',
-            'method',
-            'headers',
-            'fetch_type',
-            'cookie',
-            'no_redirect',
-            'body',
-            'ua_type'
-          ]
-          data = page_data.select{|k,v|fields.include? k}
-          data['url'] = self.class.clean_uri data['url']
-          data['headers'] = self.class.format_headers data['headers']
-          data['cookie'] = DhEasy::Core::Helper::Cookie.parse_from_request data['cookie'] unless data['cookie'].nil?
-          seed = data.select{|k,v|fields.include? k}.hash
-          checksum = self.class.fake_uuid seed
-          "#{URI.parse(data['url']).hostname}-#{checksum}"
+          # ensure page url
+          return "" if page_data['url'].nil? || page_data['url'].to_s.strip === ''
+
+          # calculate extra fields, keep field order to match datahen
+          data = []
+          data << "method:#{page_data['method'].to_s.downcase}"
+          no_url_encode = (!page_data['no_url_encode'].nil? && !!page_data['no_url_encode'])
+          uri = self.class.clean_uri_obj(page_data['url'])
+          url = (no_url_encode ? page_data['url'].to_s.lstrip : uri.to_s)
+          data << "url:#{url}"
+          headers = self.class.format_headers page_data['headers']
+          data << "headers:#{headers}"
+          data << "body:#{page_data['body'].to_s}"
+          no_redirect = (!page_data['no_redirect'].nil? && !!page_data['no_redirect'])
+          data << "no_redirect:#{no_redirect.to_s}"
+          ua_type = (page_data['ua_type'].to_s === '') ? 'desktop' : page_data['ua_type']
+          data << "ua_type:#{ua_type}"
+
+          # complex fields
+          data << "fetch_type:#{page_data['fetch_type']}" unless self.class.is_default_fetch_type? page_data['fetch_type']
+          # keep this cookie logic to match datahen
+          data << "cookie:#{page_data['cookie'].split(/;\s*/).sort.join(';')}" if page_data['cookie'].to_s.strip != ''
+          data << "http2:true" if page_data.has_key?('http2') && !page_data['http2'].nil? && !!page_data['http2']
+          data << "driverName:#{page_data['driver']['name']}" unless self.class.is_driver_empty? page_data['driver']
+          unless self.class.is_display_empty? page_data['display']
+            data << "display:#{page_data['display']['width']}x#{page_data['display']['height']}"
+          end
+          unless self.class.is_screenshot_empty? page_data['screenshot']
+            checksum = self.fake_uuid JSON.generate(page_data['screenshot'])
+            data << "screenshot:#{checksum}"
+          end
+
+          # generate GID
+          seed = data.join('|')
+          checksum = self.fake_uuid seed
+          "#{uri.hostname}-#{checksum}"
         end
 
         # Get page keys with key generators to emulate saving on db.
@@ -354,18 +497,45 @@ module DhEasy
         # @return [Hash]
         def page_defaults
           @page_defaults ||= {
+            'job_id' => lambda{|page| job_id},
             'url' => nil,
             'status' => 'to_fetch',
-            'job_id' => lambda{|page| job_id},
+            'page_type' => 'default',
             'method' => 'GET',
             'headers' => {},
-            'fetch_type' => 'standard',
+            'fetch_type' => DEFAULT_FETCH_TYPE,
             'cookie' => nil,
             'no_redirect' => false,
             'body' => nil,
             'ua_type' => 'desktop',
             'no_url_encode' => false,
             'http2' => false,
+            'priority' => 0,
+            'parsing_try_count' => 0,
+            'parsing_fail_count' => 0,
+            'fetching_at' => '0001-01-01T00:00:00Z',
+            'fetching_try_count' => 0,
+            'refetch_count' => 0,
+            'fetched_from' => '',
+            'content_size' => 0,
+            'force_fetch' => false,
+            'driver' => {
+              'name' => '',
+              'pre_code' => '',
+              'code' => '',
+              'goto_options' => {},
+              'stealth' => false,
+              'enable_images' => false
+            },
+            'display' => {
+              'width' => 0,
+              'height' => 0
+            },
+            'screenshot' => {
+              'take_screenshot' => false,
+              'options' => {}
+            },
+            'driver_log' => nil,
             'vars' => {}
           }
         end
@@ -388,9 +558,22 @@ module DhEasy
             item
           end
           collection.bind_event(:before_insert) do |collection, item, match|
+            item['driver'] = nil if self.class.is_driver_empty? item['driver']
+            item['display'] = nil if self.class.is_display_empty? item['display']
+            item['screenshot'] = nil if self.class.is_screenshot_empty? item['screenshot']
+            item['headers'] = nil if self.class.is_hash_empty? item['headers']
+            item['vars'] = nil if self.class.is_hash_empty? item['vars']
+            uri = self.class.clean_uri_obj(item['url'])
+            item['hostname'] = uri.hostname
+            uri = nil
             if item['gid'].nil? || !allow_page_gid_override?
               item['gid'] = generate_page_gid item
             end
+
+            # 30 days = 60 * 60 * 24 * 30 = 2592000
+            item['freshness'] ||= self.class.time_stamp (Time.now - 2592000)
+            item['to_fetch'] ||= self.class.time_stamp
+            item['created_at'] ||= self.class.time_stamp
             item
           end
           collection.bind_event(:after_insert) do |collection, item|
@@ -406,7 +589,7 @@ module DhEasy
         # @return [String]
         def generate_output_id data
           # Generate random UUID to match Datahen behavior
-          self.class.fake_uuid
+          self.fake_uuid
         end
 
         # Get output keys with key generators to emulate saving on db.

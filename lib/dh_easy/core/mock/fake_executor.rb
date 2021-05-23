@@ -293,7 +293,6 @@ module DhEasy
             raise ArgumentError.new("per_page needs to be an Integer between 1 and #{MAX_FIND_OUTPUTS_PER_PAGE}.")
           end
 
-          count = 0
           offset = (page - 1) * per_page
           job = latest_job_by(opts[:scraper_name])
           fixed_query = query.merge(

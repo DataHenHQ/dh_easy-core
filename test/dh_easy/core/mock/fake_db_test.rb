@@ -32,9 +32,30 @@ describe 'fake db' do
       assert_equal expected, DhEasy::Core::Mock::FakeDb::DEFAULT_COLLECTION
     end
 
+    it 'should have default fetch_type' do
+      expected = 'standard'
+      assert_equal expected, DhEasy::Core::Mock::FakeDb::DEFAULT_FETCH_TYPE
+    end
+
+    it 'should have default UUID algorithm' do
+      expected = :md5
+      assert_equal expected, DhEasy::Core::Mock::FakeDb::DEFAULT_UUID_ALGORITHM
+    end
+
+    it 'should have a valid UUID algorithm list' do
+      expected = [:md5, :sha1, :sha256]
+      assert_equal expected, DhEasy::Core::Mock::FakeDb::VALID_UUID_ALGORITHMS
+    end
+
     it 'should create new smart collection' do
       data = DhEasy::Core::Mock::FakeDb.new_collection []
       assert_kind_of DhEasy::Core::SmartCollection, data
+    end
+
+    it 'should default to MD5 UUID algorithm' do
+      uuid_a = DhEasy::Core::Mock::FakeDb.fake_uuid 'a'
+      uuid_b = DhEasy::Core::Mock::FakeDb.fake_uuid 'a', :md5
+      assert_equal uuid_a, uuid_b
     end
 
     it 'should create random fake uuid as string when no seed' do
@@ -47,32 +68,124 @@ describe 'fake db' do
       assert_operator uuid_b.length, :>, 0
     end
 
-    it 'should create fake uuid as string when seed' do
-      uuid = DhEasy::Core::Mock::FakeDb.fake_uuid 'abc'
-      assert_kind_of String, uuid
-      assert_operator uuid.length, :>, 0
+    describe 'with MD5 UUID algorithm' do
+      it 'should create random fake uuid as string when no seed' do
+        uuid_a = DhEasy::Core::Mock::FakeDb.fake_uuid nil, :md5
+        uuid_b = DhEasy::Core::Mock::FakeDb.fake_uuid nil, :md5
+        refute_equal uuid_a, uuid_b
+        assert_kind_of String, uuid_a
+        assert_kind_of String, uuid_b
+        assert_operator uuid_a.length, :>, 0
+        assert_operator uuid_b.length, :>, 0
+      end
+
+      it 'should create fake uuid as string when seed' do
+        uuid = DhEasy::Core::Mock::FakeDb.fake_uuid 'abc', :md5
+        assert_kind_of String, uuid
+        assert_operator uuid.length, :>, 0
+      end
+
+      it 'should create consistent uniq fake uuid when seed' do
+        uuid_a = DhEasy::Core::Mock::FakeDb.fake_uuid 'a', :md5
+        uuid_b = DhEasy::Core::Mock::FakeDb.fake_uuid 'b', :md5
+        refute_equal uuid_a, uuid_b
+
+        second_uuid_a = DhEasy::Core::Mock::FakeDb.fake_uuid 'a', :md5
+        second_uuid_b = DhEasy::Core::Mock::FakeDb.fake_uuid 'b', :md5
+        assert_equal second_uuid_a, uuid_a
+        assert_equal second_uuid_b, uuid_b
+      end
+
+      it 'should create consistent uniq fake uuid when object seed' do
+        uuid_a = DhEasy::Core::Mock::FakeDb.fake_uuid({'aaa' => 111}, :md5)
+        uuid_b = DhEasy::Core::Mock::FakeDb.fake_uuid({'bbb' => 222}, :md5)
+        refute_equal uuid_a, uuid_b
+
+        second_uuid_a = DhEasy::Core::Mock::FakeDb.fake_uuid({'aaa' => 111}, :md5)
+        second_uuid_b = DhEasy::Core::Mock::FakeDb.fake_uuid({'bbb' => 222}, :md5)
+        assert_equal second_uuid_a, uuid_a
+        assert_equal second_uuid_b, uuid_b
+      end
     end
 
-    it 'should create consistent uniq fake uuid when seed' do
-      uuid_a = DhEasy::Core::Mock::FakeDb.fake_uuid 'a'
-      uuid_b = DhEasy::Core::Mock::FakeDb.fake_uuid 'b'
-      refute_equal uuid_a, uuid_b
+    describe 'with SHA1 UUID algorithm' do
+      it 'should create random fake uuid as string when no seed' do
+        uuid_a = DhEasy::Core::Mock::FakeDb.fake_uuid nil, :sha1
+        uuid_b = DhEasy::Core::Mock::FakeDb.fake_uuid nil, :sha1
+        refute_equal uuid_a, uuid_b
+        assert_kind_of String, uuid_a
+        assert_kind_of String, uuid_b
+        assert_operator uuid_a.length, :>, 0
+        assert_operator uuid_b.length, :>, 0
+      end
 
-      second_uuid_a = DhEasy::Core::Mock::FakeDb.fake_uuid 'a'
-      second_uuid_b = DhEasy::Core::Mock::FakeDb.fake_uuid 'b'
-      assert_equal second_uuid_a, uuid_a
-      assert_equal second_uuid_b, uuid_b
+      it 'should create fake uuid as string when seed' do
+        uuid = DhEasy::Core::Mock::FakeDb.fake_uuid 'abc', :sha1
+        assert_kind_of String, uuid
+        assert_operator uuid.length, :>, 0
+      end
+
+      it 'should create consistent uniq fake uuid when seed' do
+        uuid_a = DhEasy::Core::Mock::FakeDb.fake_uuid 'a', :sha1
+        uuid_b = DhEasy::Core::Mock::FakeDb.fake_uuid 'b', :sha1
+        refute_equal uuid_a, uuid_b
+
+        second_uuid_a = DhEasy::Core::Mock::FakeDb.fake_uuid 'a', :sha1
+        second_uuid_b = DhEasy::Core::Mock::FakeDb.fake_uuid 'b', :sha1
+        assert_equal second_uuid_a, uuid_a
+        assert_equal second_uuid_b, uuid_b
+      end
+
+      it 'should create consistent uniq fake uuid when object seed' do
+        uuid_a = DhEasy::Core::Mock::FakeDb.fake_uuid({'aaa' => 111}, :sha1)
+        uuid_b = DhEasy::Core::Mock::FakeDb.fake_uuid({'bbb' => 222}, :sha1)
+        refute_equal uuid_a, uuid_b
+
+        second_uuid_a = DhEasy::Core::Mock::FakeDb.fake_uuid({'aaa' => 111}, :sha1)
+        second_uuid_b = DhEasy::Core::Mock::FakeDb.fake_uuid({'bbb' => 222}, :sha1)
+        assert_equal second_uuid_a, uuid_a
+        assert_equal second_uuid_b, uuid_b
+      end
     end
 
-    it 'should create consistent uniq fake uuid when object seed' do
-      uuid_a = DhEasy::Core::Mock::FakeDb.fake_uuid({'aaa' => 111})
-      uuid_b = DhEasy::Core::Mock::FakeDb.fake_uuid({'bbb' => 222})
-      refute_equal uuid_a, uuid_b
+    describe 'with SHA256 UUID algorithm' do
+      it 'should create random fake uuid as string when no seed' do
+        uuid_a = DhEasy::Core::Mock::FakeDb.fake_uuid nil, :sha256
+        uuid_b = DhEasy::Core::Mock::FakeDb.fake_uuid nil, :sha256
+        refute_equal uuid_a, uuid_b
+        assert_kind_of String, uuid_a
+        assert_kind_of String, uuid_b
+        assert_operator uuid_a.length, :>, 0
+        assert_operator uuid_b.length, :>, 0
+      end
 
-      second_uuid_a = DhEasy::Core::Mock::FakeDb.fake_uuid({'aaa' => 111})
-      second_uuid_b = DhEasy::Core::Mock::FakeDb.fake_uuid({'bbb' => 222})
-      assert_equal second_uuid_a, uuid_a
-      assert_equal second_uuid_b, uuid_b
+      it 'should create fake uuid as string when seed' do
+        uuid = DhEasy::Core::Mock::FakeDb.fake_uuid 'abc', :sha256
+        assert_kind_of String, uuid
+        assert_operator uuid.length, :>, 0
+      end
+
+      it 'should create consistent uniq fake uuid when seed' do
+        uuid_a = DhEasy::Core::Mock::FakeDb.fake_uuid 'a', :sha256
+        uuid_b = DhEasy::Core::Mock::FakeDb.fake_uuid 'b', :sha256
+        refute_equal uuid_a, uuid_b
+
+        second_uuid_a = DhEasy::Core::Mock::FakeDb.fake_uuid 'a', :sha256
+        second_uuid_b = DhEasy::Core::Mock::FakeDb.fake_uuid 'b', :sha256
+        assert_equal second_uuid_a, uuid_a
+        assert_equal second_uuid_b, uuid_b
+      end
+
+      it 'should create consistent uniq fake uuid when object seed' do
+        uuid_a = DhEasy::Core::Mock::FakeDb.fake_uuid({'aaa' => 111}, :sha256)
+        uuid_b = DhEasy::Core::Mock::FakeDb.fake_uuid({'bbb' => 222}, :sha256)
+        refute_equal uuid_a, uuid_b
+
+        second_uuid_a = DhEasy::Core::Mock::FakeDb.fake_uuid({'aaa' => 111}, :sha256)
+        second_uuid_b = DhEasy::Core::Mock::FakeDb.fake_uuid({'bbb' => 222}, :sha256)
+        assert_equal second_uuid_a, uuid_a
+        assert_equal second_uuid_b, uuid_b
+      end
     end
 
     describe 'clean_uri' do
@@ -102,6 +215,202 @@ describe 'fake db' do
         data = DhEasy::Core::Mock::FakeDb.clean_uri url
         expected = 'https://abc.com/aaa/bbb'
         assert_equal expected, data
+      end
+    end
+
+    describe 'is_driver_empty?' do
+      it 'should be empty when nil' do
+        assert DhEasy::Core::Mock::FakeDb.is_driver_empty?(nil)
+      end
+
+      it 'should be empty when non hash' do
+        assert DhEasy::Core::Mock::FakeDb.is_driver_empty?("")
+      end
+
+      it "should be empty when name is nil" do
+        assert DhEasy::Core::Mock::FakeDb.is_driver_empty?({'name' => nil})
+      end
+
+      it "should be empty when name is empty spaces" do
+        assert DhEasy::Core::Mock::FakeDb.is_driver_empty?({'name' => '   '})
+      end
+
+      it "shouldn't be empty when has a name" do
+        refute DhEasy::Core::Mock::FakeDb.is_driver_empty?({'name' => 'abc'})
+      end
+
+      it "should be empty when code is nil" do
+        assert DhEasy::Core::Mock::FakeDb.is_driver_empty?({'code' => nil})
+      end
+
+      it "should be empty when code is empty spaces" do
+        assert DhEasy::Core::Mock::FakeDb.is_driver_empty?({'code' => '   '})
+      end
+
+      it "shouldn't be empty when has a code" do
+        refute DhEasy::Core::Mock::FakeDb.is_driver_empty?({'code' => 'abc'})
+      end
+
+      it "should be empty when pre_code is nil" do
+        assert DhEasy::Core::Mock::FakeDb.is_driver_empty?({'pre_code' => nil})
+      end
+
+      it "should be empty when pre_code is empty spaces" do
+        assert DhEasy::Core::Mock::FakeDb.is_driver_empty?({'pre_code' => '   '})
+      end
+
+      it "shouldn't be empty when has a pre_code" do
+        refute DhEasy::Core::Mock::FakeDb.is_driver_empty?({'pre_code' => 'abc'})
+      end
+
+      it "should be empty when stealth is nil" do
+        assert DhEasy::Core::Mock::FakeDb.is_driver_empty?({'stealth' => nil})
+      end
+
+      it "should be empty when stealth is false" do
+        assert DhEasy::Core::Mock::FakeDb.is_driver_empty?({'stealth' => false})
+      end
+
+      it "shouldn't be empty when stealth is true" do
+        refute DhEasy::Core::Mock::FakeDb.is_driver_empty?({'stealth' => true})
+      end
+
+      it "should be empty when enable_images is nil" do
+        assert DhEasy::Core::Mock::FakeDb.is_driver_empty?({'enable_images' => nil})
+      end
+
+      it "should be empty when enable_images is false" do
+        assert DhEasy::Core::Mock::FakeDb.is_driver_empty?({'enable_images' => false})
+      end
+
+      it "shouldn't be empty when enable_images is true" do
+        refute DhEasy::Core::Mock::FakeDb.is_driver_empty?({'enable_images' => true})
+      end
+
+      it "should be empty when goto_options is nil" do
+        assert DhEasy::Core::Mock::FakeDb.is_driver_empty?({'goto_options' => nil})
+      end
+
+      it "should be empty when goto_options isn't a hash" do
+        assert DhEasy::Core::Mock::FakeDb.is_driver_empty?({'goto_options' => 'abc'})
+      end
+
+      it "should be empty when goto_options is an empty hash" do
+        assert DhEasy::Core::Mock::FakeDb.is_driver_empty?({'goto_options' => {}})
+      end
+
+      it "shouldn't be empty when goto_options is a hash with keys" do
+        refute DhEasy::Core::Mock::FakeDb.is_driver_empty?({'goto_options' => {a: nil}})
+      end
+
+      it "should be empty when an unknown key has a value" do
+        assert DhEasy::Core::Mock::FakeDb.is_driver_empty?({'aaa' => 'AAA'})
+      end
+    end
+
+    describe 'is_display_empty?' do
+      it 'should be empty when nil' do
+        assert DhEasy::Core::Mock::FakeDb.is_display_empty?(nil)
+      end
+
+      it 'should be empty when non hash' do
+        assert DhEasy::Core::Mock::FakeDb.is_display_empty?("")
+      end
+
+      it "should be empty when width is nil" do
+        assert DhEasy::Core::Mock::FakeDb.is_display_empty?({'width' => nil})
+      end
+
+      it "should be empty when width is 0" do
+        assert DhEasy::Core::Mock::FakeDb.is_display_empty?({'width' => 0})
+      end
+
+      it "should be empty when width is lower than 0" do
+        assert DhEasy::Core::Mock::FakeDb.is_display_empty?({'width' => -0.1})
+      end
+
+      it "shouldn't be empty when width is greater than 0" do
+        refute DhEasy::Core::Mock::FakeDb.is_display_empty?({'width' => 0.1})
+      end
+
+      it "should be empty when height is nil" do
+        assert DhEasy::Core::Mock::FakeDb.is_display_empty?({'height' => nil})
+      end
+
+      it "should be empty when height is 0" do
+        assert DhEasy::Core::Mock::FakeDb.is_display_empty?({'height' => 0})
+      end
+
+      it "should be empty when height is lower than 0" do
+        assert DhEasy::Core::Mock::FakeDb.is_display_empty?({'height' => -0.1})
+      end
+
+      it "shouldn't be empty when height is greater than 0" do
+        refute DhEasy::Core::Mock::FakeDb.is_display_empty?({'height' => 0.1})
+      end
+
+      it "should be empty when an unknown key has a value" do
+        assert DhEasy::Core::Mock::FakeDb.is_display_empty?({'bbb' => 'BBB'})
+      end
+    end
+
+    describe 'is_screenshot_empty?' do
+      it 'should be empty when nil' do
+        assert DhEasy::Core::Mock::FakeDb.is_screenshot_empty?(nil)
+      end
+
+      it 'should be empty when non hash' do
+        assert DhEasy::Core::Mock::FakeDb.is_screenshot_empty?("")
+      end
+
+      it "should be empty when name is nil" do
+        assert DhEasy::Core::Mock::FakeDb.is_screenshot_empty?({'name' => nil})
+      end
+
+      it "should be empty when take_screenshot is nil" do
+        assert DhEasy::Core::Mock::FakeDb.is_screenshot_empty?({'take_screenshot' => nil})
+      end
+
+      it "should be empty when take_screenshot is false" do
+        assert DhEasy::Core::Mock::FakeDb.is_screenshot_empty?({'take_screenshot' => false})
+      end
+
+      it "should be empty when take_screenshot is true but options hash is empty" do
+        assert DhEasy::Core::Mock::FakeDb.is_screenshot_empty?({'take_screenshot' => true})
+      end
+
+      it "should be empty when options is nil" do
+        assert DhEasy::Core::Mock::FakeDb.is_screenshot_empty?({'options' => nil})
+      end
+
+      it "should be empty when options isn't a hash" do
+        assert DhEasy::Core::Mock::FakeDb.is_screenshot_empty?({'options' => 'abc'})
+      end
+
+      it "should be empty when options is an empty hash" do
+        assert DhEasy::Core::Mock::FakeDb.is_screenshot_empty?({'take_screenshot' => true, 'options' => {}})
+      end
+
+      it "shouldn't be empty when take_screenshot is true and options is a hash with keys" do
+        refute DhEasy::Core::Mock::FakeDb.is_screenshot_empty?({'take_screenshot' => true, 'options' => {a: nil}})
+      end
+
+      it "should be empty when an unknown key has a value" do
+        assert DhEasy::Core::Mock::FakeDb.is_screenshot_empty?({'ccc' => 'CCC'})
+      end
+    end
+
+    describe 'is_hash_empty?' do
+      it 'should be empty when nil' do
+        assert DhEasy::Core::Mock::FakeDb.is_hash_empty?(nil)
+      end
+
+      it 'should be empty when non hash' do
+        assert DhEasy::Core::Mock::FakeDb.is_hash_empty?("")
+      end
+
+      it "shouldn't be empty when has keys" do
+        refute DhEasy::Core::Mock::FakeDb.is_hash_empty?({a: nil})
       end
     end
 
@@ -148,9 +457,43 @@ describe 'fake db' do
       refute db.allow_job_id_override?
     end
 
+    it 'should initialize with default MD5 uuid_algorithm' do
+      db = DhEasy::Core::Mock::FakeDb.new
+      expected = :md5
+      assert_kind_of DhEasy::Core::Mock::FakeDb, db
+      assert_equal expected, db.uuid_algorithm
+    end
+
+    it 'should initialize with MD5 uuid_algorithm' do
+      db = DhEasy::Core::Mock::FakeDb.new uuid_algorithm: :md5
+      expected = :md5
+      assert_kind_of DhEasy::Core::Mock::FakeDb, db
+      assert_equal expected, db.uuid_algorithm
+    end
+
+    it 'should initialize with SHA1 uuid_algorithm' do
+      db = DhEasy::Core::Mock::FakeDb.new uuid_algorithm: :sha1
+      expected = :sha1
+      assert_kind_of DhEasy::Core::Mock::FakeDb, db
+      assert_equal expected, db.uuid_algorithm
+    end
+
+    it 'should initialize with SHA256 uuid_algorithm' do
+      db = DhEasy::Core::Mock::FakeDb.new uuid_algorithm: :sha256
+      expected = :sha256
+      assert_kind_of DhEasy::Core::Mock::FakeDb, db
+      assert_equal expected, db.uuid_algorithm
+    end
+
+    it "shouldn raise an error when initialize with invalid uuid_algorithm" do
+      assert_raises ArgumentError do
+        DhEasy::Core::Mock::FakeDb.new uuid_algorithm: :aaa
+      end
+    end
+
     it 'should generate time stamp correctly' do
-      time = Time.new 2019, 9, 10, 20, 15, 1
-      assert_equal '2019-09-10T20:15:01Z', DhEasy::Core::Mock::FakeDb.time_stamp(time)
+      time = Time.at 1621733126
+      assert_equal '2021-05-23T01:25:26Z', DhEasy::Core::Mock::FakeDb.time_stamp(time)
     end
 
     describe 'instance' do
@@ -166,6 +509,32 @@ describe 'fake db' do
       it 'should set page gid' do
         @db.page_gid = '333'
         assert_equal '333', @db.page_gid
+      end
+
+      it 'should set MD5 UUID algorithm bt default' do
+        @db.uuid_algorithm = nil
+        assert_equal :md5, @db.uuid_algorithm
+      end
+
+      it 'should set MD5 UUID algorithm' do
+        @db.uuid_algorithm = :md5
+        assert_equal :md5, @db.uuid_algorithm
+      end
+
+      it 'should set SHA1 UUID algorithm' do
+        @db.uuid_algorithm = :sha1
+        assert_equal :sha1, @db.uuid_algorithm
+      end
+
+      it 'should set SHA256 UUID algorithm' do
+        @db.uuid_algorithm = :sha256
+        assert_equal :sha256, @db.uuid_algorithm
+      end
+
+      it 'should raise and error when set an invalid UUID algorithm' do
+        assert_raises ArgumentError do
+          @db.uuid_algorithm = :bbb
+        end
       end
 
       it 'should enable allow_page_gid_override' do
@@ -220,6 +589,72 @@ describe 'fake db' do
         assert_equal gid_a, gid_b
       end
 
+      it 'should generate different page gid when it has driver.name' do
+        gid_a = @db.generate_page_gid('url' => 'https://www.abc.com')
+        gid_b = @db.generate_page_gid('url' => 'https://www.abc.com', 'driver' => {'name' => 'aaa'})
+        refute_equal gid_a, gid_b
+      end
+
+      it 'should generate different page gid when it has display' do
+        gid_a = @db.generate_page_gid('url' => 'https://www.abc.com')
+        gid_b = @db.generate_page_gid('url' => 'https://www.abc.com', 'display' => {'width' => 20, 'height' => 30})
+        refute_equal gid_a, gid_b
+      end
+
+      it 'should generate different page gid when it has different display width' do
+        gid_a = @db.generate_page_gid('url' => 'https://www.abc.com', 'display' => {'width' => 20, 'height' => 30})
+        gid_b = @db.generate_page_gid('url' => 'https://www.abc.com', 'display' => {'width' => 50, 'height' => 30})
+        refute_equal gid_a, gid_b
+      end
+
+      it 'should generate different page gid when it has different display height' do
+        gid_a = @db.generate_page_gid('url' => 'https://www.abc.com', 'display' => {'width' => 20, 'height' => 30})
+        gid_b = @db.generate_page_gid('url' => 'https://www.abc.com', 'display' => {'width' => 20, 'height' => 40})
+        refute_equal gid_a, gid_b
+      end
+
+      it 'should generate the same page gid when it has screenshot.take_screenshot as false' do
+        gid_a = @db.generate_page_gid('url' => 'https://www.abc.com')
+        gid_b = @db.generate_page_gid('url' => 'https://www.abc.com', 'screenshot' => {'take_screenshot' => false})
+        assert_equal gid_a, gid_b
+      end
+
+      it 'should generate different page gid when it has screenshot' do
+        gid_a = @db.generate_page_gid('url' => 'https://www.abc.com')
+        gid_b = @db.generate_page_gid(
+          'url' => 'https://www.abc.com',
+          'screenshot' => {
+            'take_screenshot' => true,
+            'options' => {
+              'aaa' => 'AAA'
+            }
+          }
+        )
+        refute_equal gid_a, gid_b
+      end
+
+      it 'should generate different page gid when it has different screenshot options' do
+        gid_a = @db.generate_page_gid(
+          'url' => 'https://www.abc.com',
+          'screenshot' => {
+            'take_screenshot' => true,
+            'options' => {
+              'bbb' => 'BBB'
+            }
+          }
+        )
+        gid_b = @db.generate_page_gid(
+          'url' => 'https://www.abc.com',
+          'screenshot' => {
+            'take_screenshot' => true,
+            'options' => {
+              'aaa' => 'AAA'
+            }
+          }
+        )
+        refute_equal gid_a, gid_b
+      end
+
       it 'should generate page gids consistently' do
         base_hash = {
           'url' => 'https://aaa.com',
@@ -266,19 +701,33 @@ describe 'fake db' do
 
       it 'should generate page defaults' do
         expected_keys = [
-          'url',
-          'job_id',
-          'status',
-          'method',
-          'headers',
-          'fetch_type',
-          'cookie',
-          'no_redirect',
-          'body',
-          'ua_type',
-          'no_url_encode',
-          'http2',
-          'vars'
+          "body",
+          "content_size",
+          "cookie",
+          "display",
+          "driver",
+          "driver_log",
+          "fetch_type",
+          "fetched_from",
+          "fetching_at",
+          "fetching_try_count",
+          "force_fetch",
+          "headers",
+          "http2",
+          "job_id",
+          "method",
+          "no_redirect",
+          "no_url_encode",
+          "page_type",
+          "parsing_fail_count",
+          "parsing_try_count",
+          "priority",
+          "refetch_count",
+          "screenshot",
+          "status",
+          "ua_type",
+          "url",
+          "vars"
         ]
         data = @db.page_defaults
         assert_equal expected_keys.sort, data.keys.sort
@@ -395,45 +844,6 @@ describe 'fake db' do
         assert_operator page['gid'].length, :>, 0
       end
 
-      it 'should stringify page data on page insert' do
-        assert_empty @db.pages
-        input_page = {
-          gid: '111',
-          url: 'https://www.example.com/abc',
-          method: 'POST',
-          headers: {
-            Cookie: 'abc=123'
-          },
-          fetch_type: 'browser',
-          cookie: 'bbb=BBB',
-          no_redirect: true,
-          body: 'aaa=AAA',
-          ua_type: 'mobile',
-          no_url_encode: true,
-          http2: true
-        }
-        @db.pages << input_page
-        expected = [{
-          'gid' => @db.pages.first['gid'],
-          'job_id' => @db.job_id,
-          'status' => 'to_fetch',
-          'url' => 'https://www.example.com/abc',
-          'method' => 'POST',
-          'headers' => {
-            'Cookie' => 'abc=123'
-          },
-          'fetch_type' => 'browser',
-          'cookie' => 'bbb=BBB',
-          'no_redirect' => true,
-          'body' => 'aaa=AAA',
-          'ua_type' => 'mobile',
-          'no_url_encode' => true,
-          'http2' => true,
-          'vars' => {}
-        }]
-        assert_equal expected, @db.pages
-      end
-
       it 'should not modify original page data on page insert' do
         assert_empty @db.pages
         input_page = {
@@ -452,36 +862,6 @@ describe 'fake db' do
           }
         }
         assert_equal expected, input_page
-      end
-
-      it 'should add missing values on page insert' do
-        assert_empty @db.pages
-        @db.pages << {
-          'url' => 'https://www.example.com/abc',
-          'headers' => {
-            'Cookie' => 'abc=123'
-          }
-        }
-        expected = [{
-          'gid' => @db.pages.first['gid'],
-          'job_id' => @db.job_id,
-          'status' => 'to_fetch',
-          'url' => 'https://www.example.com/abc',
-          'method' => 'GET',
-          'headers' => {
-            'Cookie' => 'abc=123'
-          },
-          'fetch_type' => 'standard',
-          'cookie' => nil,
-          'no_redirect' => false,
-          'body' => nil,
-          'ua_type' => 'desktop',
-          'no_url_encode' => false,
-          'http2' => false,
-          'vars' => {}
-        }]
-        assert_operator @db.pages.count, :==, 1
-        assert_equal expected, @db.pages
       end
 
       it 'should replace gid on page insert' do
@@ -509,36 +889,6 @@ describe 'fake db' do
         }
         assert_operator @db.pages.count, :==, 1
         assert_equal '555', @db.pages.first['gid']
-      end
-
-      it 'should replace page with same gid on page insert when page gid override is enabled' do
-        @db.enable_page_gid_override
-        assert_empty @db.pages
-        @db.pages << {
-          'gid' => '555',
-          'url' => 'https://www.example.com/aaa'
-        }
-        @db.pages << {
-          'gid' => '555',
-          'url' => 'https://www.example.com/bbb'
-        }
-        expected = [{
-          'gid' => '555',
-          'job_id' => @db.job_id,
-          'status' => 'to_fetch',
-          'url' => 'https://www.example.com/bbb',
-          'method' => 'GET',
-          'headers' => {},
-          'fetch_type' => 'standard',
-          'cookie' => nil,
-          'no_redirect' => false,
-          'body' => nil,
-          'ua_type' => 'desktop',
-          'no_url_encode' => false,
-          'http2' => false,
-          'vars' => {}
-        }]
-        assert_equal expected, @db.pages
       end
 
       it 'should insert new page with same gid on page insert when page gid override is disabled' do
@@ -646,8 +996,11 @@ describe 'fake db' do
 
       describe 'frozen_time' do
         before do
-          @time = Time.now
-          @formatted_time = @time.strftime('%Y-%m-%dT%H:%M:%SZ')
+          @format_date = lambda do |time|
+            time.utc.strftime('%FT%T.%6N').gsub(/[0.]+\Z/,'') << "Z"
+          end
+          @time = Time.parse '2021-05-23T01:25:26.42732143123Z'
+          @formatted_time = @format_date.call @time
           Timecop.freeze @time
           @output_base = {
             '_collection' => 'default',
@@ -659,6 +1012,159 @@ describe 'fake db' do
 
         after do
           Timecop.return
+        end
+
+        it 'should stringify page data on page insert' do
+          assert_empty @db.pages
+          input_page = {
+            gid: '111',
+            url: 'https://www.example.com/abc',
+            method: 'POST',
+            headers: {
+              Cookie: 'abc=123'
+            },
+            fetch_type: 'browser',
+            cookie: 'bbb=BBB',
+            no_redirect: true,
+            body: 'aaa=AAA',
+            ua_type: 'mobile',
+            no_url_encode: true,
+            http2: true
+          }
+          @db.pages << input_page
+          expected = [{
+            'gid' => @db.pages.first['gid'],
+            'job_id' => @db.job_id,
+            'status' => 'to_fetch',
+            'url' => 'https://www.example.com/abc',
+            'method' => 'POST',
+            'headers' => {
+              'Cookie' => 'abc=123'
+            },
+            'fetch_type' => 'browser',
+            'cookie' => 'bbb=BBB',
+            'no_redirect' => true,
+            'body' => 'aaa=AAA',
+            'ua_type' => 'mobile',
+            'no_url_encode' => true,
+            'http2' => true,
+            'page_type' => 'default',
+            'freshness' => '2021-04-23T01:25:26.427321Z',
+            'hostname' => 'www.example.com',
+            'priority' => 0,
+            'parsing_try_count' => 0,
+            'parsing_fail_count' => 0,
+            'fetching_at' => '0001-01-01T00:00:00Z',
+            'fetching_try_count' => 0,
+            'refetch_count' => 0,
+            'fetched_from' => '',
+            'content_size' => 0,
+            'force_fetch' => false,
+            'to_fetch' => '2021-05-23T01:25:26.427321Z',
+            'created_at' => '2021-05-23T01:25:26.427321Z',
+            'driver' => nil,
+            'display' => nil,
+            'screenshot' => nil,
+            'driver_log' => nil,
+            'vars' => nil
+          }]
+          assert_equal expected, @db.pages
+        end
+
+        it 'should add missing values on page insert' do
+          assert_empty @db.pages
+          @db.pages << {
+            'url' => 'https://www.example.com/abc',
+            'headers' => {
+              'Cookie' => 'abc=123'
+            }
+          }
+          expected = [{
+            'gid' => @db.pages.first['gid'],
+            'job_id' => @db.job_id,
+            'status' => 'to_fetch',
+            'url' => 'https://www.example.com/abc',
+            'method' => 'GET',
+            'headers' => {
+              'Cookie' => 'abc=123'
+            },
+            'fetch_type' => 'standard',
+            'cookie' => nil,
+            'no_redirect' => false,
+            'body' => nil,
+            'ua_type' => 'desktop',
+            'no_url_encode' => false,
+            'http2' => false,
+            'page_type' => 'default',
+            'freshness' => '2021-04-23T01:25:26.427321Z',
+            'hostname' => 'www.example.com',
+            'priority' => 0,
+            'parsing_try_count' => 0,
+            'parsing_fail_count' => 0,
+            'fetching_at' => '0001-01-01T00:00:00Z',
+            'fetching_try_count' => 0,
+            'refetch_count' => 0,
+            'fetched_from' => '',
+            'content_size' => 0,
+            'force_fetch' => false,
+            'to_fetch' => '2021-05-23T01:25:26.427321Z',
+            'created_at' => '2021-05-23T01:25:26.427321Z',
+            'driver' => nil,
+            'display' => nil,
+            'screenshot' => nil,
+            'driver_log' => nil,
+            'vars' => nil
+          }]
+          assert_operator @db.pages.count, :==, 1
+          assert_equal expected, @db.pages
+        end
+
+        it 'should replace page with same gid on page insert when page gid override is enabled' do
+          @db.enable_page_gid_override
+          assert_empty @db.pages
+          @db.pages << {
+            'gid' => '555',
+            'url' => 'https://www.example.com/aaa'
+          }
+          @db.pages << {
+            'gid' => '555',
+            'url' => 'https://www.example.com/bbb'
+          }
+          expected = [{
+            'gid' => '555',
+            'job_id' => @db.job_id,
+            'status' => 'to_fetch',
+            'url' => 'https://www.example.com/bbb',
+            'method' => 'GET',
+            'headers' => nil,
+            'fetch_type' => 'standard',
+            'cookie' => nil,
+            'no_redirect' => false,
+            'body' => nil,
+            'ua_type' => 'desktop',
+            'no_url_encode' => false,
+            'http2' => false,
+            'page_type' => 'default',
+            'freshness' => '2021-04-23T01:25:26.427321Z',
+            'hostname' => 'www.example.com',
+            'priority' => 0,
+            'parsing_try_count' => 0,
+            'parsing_fail_count' => 0,
+            'fetching_at' => '0001-01-01T00:00:00Z',
+            'fetching_try_count' => 0,
+            'refetch_count' => 0,
+            'fetched_from' => '',
+            'content_size' => 0,
+            'force_fetch' => false,
+            'to_fetch' => '2021-05-23T01:25:26.427321Z',
+            'created_at' => '2021-05-23T01:25:26.427321Z',
+            'driver' => nil,
+            'display' => nil,
+            'screenshot' => nil,
+            'driver_log' => nil,
+            'vars' => nil
+          }]
+          assert_equal expected, @db.pages
         end
 
         it 'should build page without options' do
@@ -677,7 +1183,7 @@ describe 'fake db' do
             'status' => 'to_fetch',
             'url' => 'https://vvv.com',
             'method' => 'POST',
-            'headers' => {},
+            'headers' => nil,
             'fetch_type' => 'standard',
             'cookie' => nil,
             'no_redirect' => false,
@@ -685,6 +1191,24 @@ describe 'fake db' do
             'ua_type' => 'desktop',
             'no_url_encode' => false,
             'http2' => false,
+            'page_type' => 'default',
+            'freshness' => '2021-04-23T01:25:26.427321Z',
+            'hostname' => 'vvv.com',
+            'priority' => 0,
+            'parsing_try_count' => 0,
+            'parsing_fail_count' => 0,
+            'fetching_at' => '0001-01-01T00:00:00Z',
+            'fetching_try_count' => 0,
+            'refetch_count' => 0,
+            'fetched_from' => '',
+            'content_size' => 0,
+            'force_fetch' => false,
+            'to_fetch' => '2021-05-23T01:25:26.427321Z',
+            'created_at' => '2021-05-23T01:25:26.427321Z',
+            'driver' => nil,
+            'display' => nil,
+            'screenshot' => nil,
+            'driver_log' => nil,
             'vars' => {
               'aaa' => 'AAA'
             }
@@ -700,7 +1224,7 @@ describe 'fake db' do
             'status' => 'to_fetch',
             'url' => 'https://example.com',
             'method' => 'GET',
-            'headers' => {},
+            'headers' => nil,
             'fetch_type' => 'standard',
             'cookie' => nil,
             'no_redirect' => false,
@@ -708,7 +1232,25 @@ describe 'fake db' do
             'ua_type' => 'desktop',
             'no_url_encode' => false,
             'http2' => false,
-            'vars' => {}
+            'page_type' => 'default',
+            'freshness' => '2021-04-23T01:25:26.427321Z',
+            'hostname' => 'example.com',
+            'priority' => 0,
+            'parsing_try_count' => 0,
+            'parsing_fail_count' => 0,
+            'fetching_at' => '0001-01-01T00:00:00Z',
+            'fetching_try_count' => 0,
+            'refetch_count' => 0,
+            'fetched_from' => '',
+            'content_size' => 0,
+            'force_fetch' => false,
+            'to_fetch' => '2021-05-23T01:25:26.427321Z',
+            'created_at' => '2021-05-23T01:25:26.427321Z',
+            'driver' => nil,
+            'display' => nil,
+            'screenshot' => nil,
+            'driver_log' => nil,
+            'vars' => nil
           }
           assert_equal expected, data
         end
@@ -1015,7 +1557,19 @@ describe 'fake db' do
             'ua_type' => 'mobile',
             'no_url_encode' => true,
             'http2' => true,
-            'vars' => {},
+            'fetched_from' => '',
+            'page_type' => 'default',
+            'hostname' => 'www.example.com',
+            'priority' => 0,
+            'refetch_count' => 0,
+            'force_fetch' => false,
+            'created_at' => '2021-05-23T01:25:26.427321Z',
+            'driver' => nil,
+            'display' => nil,
+            'screenshot' => nil,
+            'driver_log' => nil,
+            'vars' => nil,
+
             'freshness' => '2019-01-20T10:20:30Z',
             'to_fetch' => '2019-01-20T10:20:30Z',
             'fetching_at' => '2009-01-20T10:25:45Z',
@@ -1078,10 +1632,20 @@ describe 'fake db' do
             'ua_type' => 'mobile',
             'no_url_encode' => true,
             'http2' => true,
-            'vars' => {},
+            'page_type' => 'default',
+            'hostname' => 'www.example.com',
+            'priority' => 0,
+            'refetch_count' => 0,
+            'force_fetch' => false,
+            'created_at' => '2021-05-23T01:25:26.427321Z',
+            'driver' => nil,
+            'display' => nil,
+            'screenshot' => nil,
+            'driver_log' => nil,
+            'vars' => nil,
 
-            'freshness' => @time.utc.strftime('%Y-%m-%dT%H:%M:%SZ'),
-            'to_fetch' => @time.utc.strftime('%Y-%m-%dT%H:%M:%SZ'),
+            'freshness' => "2021-05-23T01:25:26.427321Z",
+            'to_fetch' => "2021-05-23T01:25:26.427321Z",
             'fetched_from' => nil,
             'fetching_at' => '2001-01-01T00:00:00Z',
             'fetched_at' => nil,
@@ -1191,7 +1755,19 @@ describe 'fake db' do
             'ua_type' => 'mobile',
             'no_url_encode' => true,
             'http2' => true,
-            'vars' => {},
+            'fetched_from' => '',
+            'page_type' => 'default',
+            'hostname' => 'www.example.com',
+            'priority' => 0,
+            'refetch_count' => 0,
+            'force_fetch' => false,
+            'created_at' => '2021-05-23T01:25:26.427321Z',
+            'driver' => nil,
+            'display' => nil,
+            'screenshot' => nil,
+            'driver_log' => nil,
+            'vars' => nil,
+
             'freshness' => '2019-01-20T10:20:30Z',
             'to_fetch' => '2019-01-20T10:20:30Z',
             'fetching_at' => '2009-01-20T10:25:45Z',
@@ -1254,7 +1830,18 @@ describe 'fake db' do
             'ua_type' => 'mobile',
             'no_url_encode' => true,
             'http2' => true,
-            'vars' => {},
+            'fetched_from' => '',
+            'page_type' => 'default',
+            'hostname' => 'www.example.com',
+            'priority' => 0,
+            'refetch_count' => 0,
+            'force_fetch' => false,
+            'created_at' => '2021-05-23T01:25:26.427321Z',
+            'driver' => nil,
+            'display' => nil,
+            'screenshot' => nil,
+            'driver_log' => nil,
+            'vars' => nil,
 
             'freshness' => '2019-01-20T10:20:30Z',
             'to_fetch' => '2019-01-20T10:20:30Z',

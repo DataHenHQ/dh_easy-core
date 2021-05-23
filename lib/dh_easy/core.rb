@@ -1,4 +1,5 @@
 require 'time'
+require 'digest'
 require 'faker'
 require 'datahen'
 require 'dh_easy/core/smart_collection'
@@ -31,7 +32,7 @@ module DhEasy
         excluded_files = (opts[:except] || []).map{|f|File.expand_path File.join(dir, f)}
         files = Dir[File.join(File.expand_path(dir), '*.rb')] - excluded_files
         block ||= proc{}
-        files.sort.each &block
+        files.sort.each(&block)
       end
 
       # Require all scripts within a directory.
