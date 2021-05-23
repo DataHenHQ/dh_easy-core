@@ -203,8 +203,8 @@ module DhEasy
           return true if screenshot.nil?
           return true unless screenshot.is_a? Hash
           return true if screenshot['take_screenshot'].nil? || !screenshot['take_screenshot']
-          return false if !screenshot['options'].nil? && screenshot['options'].is_a?(Hash) && screenshot['options'].keys.length > 0
-          true
+          return true if !screenshot['options'].nil? && !screenshot['options'].is_a?(Hash)
+          return false
         end
 
         # Identify whenever a hash is empty.
@@ -523,7 +523,7 @@ module DhEasy
               'name' => '',
               'pre_code' => '',
               'code' => '',
-              'goto_options' => {},
+              'goto_options' => nil,
               'stealth' => false,
               'enable_images' => false
             },
@@ -533,7 +533,7 @@ module DhEasy
             },
             'screenshot' => {
               'take_screenshot' => false,
-              'options' => {}
+              'options' => nil
             },
             'driver_log' => nil,
             'vars' => {}
@@ -550,10 +550,20 @@ module DhEasy
         def pages
           return @pages unless @page.nil?
 
+          defaults = self.page_defaults
           collection = self.class.new_collection PAGE_KEYS,
-            defaults: page_defaults
+            defaults: defaults
           collection.bind_event(:before_defaults) do |collection, raw_item|
             item = DhEasy::Core.deep_stringify_keys raw_item
+            if !item['driver'].nil? && item['driver'].is_a?(Hash)
+              item['driver'] = defaults['driver'].merge item['driver']
+            end
+            if !item['display'].nil? && item['display'].is_a?(Hash)
+              item['display'] = defaults['display'].merge item['display']
+            end
+            if !item['screenshot'].nil? && item['screenshot'].is_a?(Hash)
+              item['screenshot'] = defaults['screenshot'].merge item['screenshot']
+            end
             item.delete 'job_id' unless allow_job_id_override?
             item
           end

@@ -375,24 +375,36 @@ describe 'fake db' do
         assert DhEasy::Core::Mock::FakeDb.is_screenshot_empty?({'take_screenshot' => false})
       end
 
-      it "should be empty when take_screenshot is true but options hash is empty" do
-        assert DhEasy::Core::Mock::FakeDb.is_screenshot_empty?({'take_screenshot' => true})
+      it "shouldn't be empty when take_screenshot is true" do
+        refute DhEasy::Core::Mock::FakeDb.is_screenshot_empty?({'take_screenshot' => true})
       end
 
-      it "should be empty when options is nil" do
-        assert DhEasy::Core::Mock::FakeDb.is_screenshot_empty?({'options' => nil})
+      it "shouldn't be empty when options is nil" do
+        refute DhEasy::Core::Mock::FakeDb.is_screenshot_empty?({'take_screenshot' => true, 'options' => nil})
       end
 
       it "should be empty when options isn't a hash" do
-        assert DhEasy::Core::Mock::FakeDb.is_screenshot_empty?({'options' => 'abc'})
+        assert DhEasy::Core::Mock::FakeDb.is_screenshot_empty?({'take_screenshot' => true, 'options' => 'abc'})
       end
 
-      it "should be empty when options is an empty hash" do
-        assert DhEasy::Core::Mock::FakeDb.is_screenshot_empty?({'take_screenshot' => true, 'options' => {}})
+      it "shouldn't be empty when options is an empty hash" do
+        refute DhEasy::Core::Mock::FakeDb.is_screenshot_empty?({'take_screenshot' => true, 'options' => {}})
       end
 
-      it "shouldn't be empty when take_screenshot is true and options is a hash with keys" do
+      it "shouldn't be empty when options is a hash with keys" do
         refute DhEasy::Core::Mock::FakeDb.is_screenshot_empty?({'take_screenshot' => true, 'options' => {a: nil}})
+      end
+
+      it "should be empty when no take_snapshot and options is nil" do
+        assert DhEasy::Core::Mock::FakeDb.is_screenshot_empty?({'options' => nil})
+      end
+
+      it "should be empty when no take_snapshot and options is an empty hash" do
+        assert DhEasy::Core::Mock::FakeDb.is_screenshot_empty?({'options' => {}})
+      end
+
+      it "should be empty when no take_snapshot and options is a hash with keys" do
+        assert DhEasy::Core::Mock::FakeDb.is_screenshot_empty?({'options' => {a: nil}})
       end
 
       it "should be empty when an unknown key has a value" do
@@ -741,6 +753,61 @@ describe 'fake db' do
         assert_nil data['body']
         assert_equal 'desktop', data['ua_type']
         assert_equal({}, data['vars'])
+      end
+
+      it 'should correctly override page driver' do
+        @db.pages << {
+          'url' => 'https://example.com',
+          'driver' => {
+            'name' => 'abc',
+            'stealth' => true,
+            'goto_options' => {
+              'aaa' => 'AAA'
+            }
+          }
+        }
+        page = @db.pages.first
+        expected = {
+          'name' => 'abc',
+          'pre_code' => '',
+          'code' => '',
+          'goto_options' => {
+            'aaa' => 'AAA'
+          },
+          'stealth' => true,
+          'enable_images' => false
+        }
+        assert_equal expected, page['driver']
+      end
+
+      it 'should correctly override page display' do
+        @db.pages << {
+          'url' => 'https://example.com',
+          'display' => {
+            'width' => 12
+          }
+        }
+        page = @db.pages.first
+        expected = {
+          'width' => 12,
+          'height' => 0
+        }
+        assert_equal expected, page['display']
+      end
+
+      it 'should correctly override page screenshot' do
+        @db.pages << {
+          'url' => 'https://example.com',
+          'screenshot' => {
+            'take_screenshot' => true
+          }
+        }
+        page = @db.pages.first
+        expected = {
+          'options' => nil,
+          'take_screenshot' => true,
+        }
+        assert_equal expected, page['screenshot']
       end
 
       it 'should generate output ids unique and random' do
