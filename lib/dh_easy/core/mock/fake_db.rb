@@ -57,7 +57,7 @@ module DhEasy
         # Generate a fake UUID based on output fields without `_` prefix.
         #
         # @param [Hash] data Output data.
-        # @param [Enumerator] algorithm (nil) Algorithm to use: sha256 (default), sha1, md5.
+        # @param [Enumerator] uuid_algorithm (nil) Algorithm to use: sha256 (default), sha1, md5.
         #
         # @return [String]
         def self.output_uuid data, uuid_algorithm = nil
@@ -321,7 +321,7 @@ module DhEasy
         end
 
         # Set current UUID algorithm value.
-        # @error [ArgumentError] Whenever an invalid algorithm is provided
+        # @raise [ArgumentError] Whenever an invalid algorithm is provided
         def uuid_algorithm= value
           unless value.nil? || VALID_UUID_ALGORITHMS.include?(value)
             raise ArgumentError.new("Invalid UUID algorithm, valid values are :md5, :sha1, :sha256")
