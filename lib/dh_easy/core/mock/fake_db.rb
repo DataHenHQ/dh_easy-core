@@ -574,7 +574,7 @@ module DhEasy
             item['headers'] = nil if self.class.is_hash_empty? item['headers']
             item['vars'] = nil if self.class.is_hash_empty? item['vars']
             uri = self.class.clean_uri_obj(item['url'])
-            item['hostname'] = (item['url'] =~ /about:blank/i) ? '127.0.0.1' : uri.hostname
+            item['hostname'] = (item['url'] =~ /^about:blank$/i) ? '127.0.0.1' : uri.hostname
             uri = nil
             if item['gid'].nil? || !allow_page_gid_override?
               item['gid'] = generate_page_gid item
