@@ -102,7 +102,7 @@ module DhEasy
         # @return [URI::HTTPS]
         def self.clean_uri_obj raw_url
           url = URI.parse(raw_url)
-          url.hostname = url.hostname.downcase
+          url.hostname = url.hostname.downcase unless url.hostname.nil?
           url.fragment = nil
 
           # Sort query string keys
@@ -574,7 +574,7 @@ module DhEasy
             item['headers'] = nil if self.class.is_hash_empty? item['headers']
             item['vars'] = nil if self.class.is_hash_empty? item['vars']
             uri = self.class.clean_uri_obj(item['url'])
-            item['hostname'] = uri.hostname
+            item['hostname'] = (item['url'] =~ /about:blank/i) ? '127.0.0.1' : uri.hostname
             uri = nil
             if item['gid'].nil? || !allow_page_gid_override?
               item['gid'] = generate_page_gid item
