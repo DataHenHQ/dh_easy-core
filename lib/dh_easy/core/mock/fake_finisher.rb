@@ -15,7 +15,10 @@ module DhEasy
             :outputs,
             :save_outputs,
             :find_output,
-            :find_outputs
+            :find_outputs,
+            :get_content,
+            :get_failed_content,
+            :finish
           ]
           DhEasy::Core::Mock::FakeExecutor.check_compatibility real_methods, mock_methods
           mock_methods << :job_id

@@ -23,7 +23,10 @@ describe 'fake finisher' do
         :save_outputs,
         :find_output,
         :find_outputs,
-        :job_id
+        :job_id,
+        :get_content,
+        :get_failed_content,
+        :finish
       ]
       assert_empty err
       assert_equal expected.sort, data.sort

@@ -102,6 +102,7 @@ module DhEasy
         # @return [URI::HTTPS]
         def self.clean_uri_obj raw_url
           url = URI.parse(raw_url)
+          return url if raw_url =~ /^\s*about:blank\s*$/i
           url.hostname = url.hostname.downcase unless url.hostname.nil?
           url.fragment = nil
 
@@ -175,6 +176,7 @@ module DhEasy
           return false if driver['pre_code'].to_s.strip != ''
           return false if !driver['stealth'].nil? && !!driver['stealth']
           return false if !driver['enable_images'].nil? && !!driver['enable_images']
+          return false if !driver['disable_adblocker'].nil? && !!driver['disable_adblocker']
           return false if !driver['goto_options'].nil? && driver['goto_options'].is_a?(Hash) && driver['goto_options'].keys.length > 0
           true
         end
@@ -499,33 +501,61 @@ module DhEasy
           @page_defaults ||= {
             'job_id' => lambda{|page| job_id},
             'url' => nil,
+            'effective_url' => nil,
             'status' => 'to_fetch',
+            'hostname' => '',
             'page_type' => 'default',
             'method' => 'GET',
             'headers' => {},
             'fetch_type' => DEFAULT_FETCH_TYPE,
             'cookie' => nil,
+            'no_default_headers' => false,
             'no_redirect' => false,
             'body' => nil,
             'ua_type' => 'desktop',
+            'freshness' => nil,
+            'fresh' => nil,
+            'proxy_type' => '',
             'no_url_encode' => false,
             'http2' => false,
             'priority' => 0,
             'parsing_try_count' => 0,
             'parsing_fail_count' => 0,
+            'parsing_at' => nil,
+            'parsing_failed_at' => nil,
+            'parsed_at' => nil,
             'fetching_at' => '0001-01-01T00:00:00Z',
             'fetching_try_count' => 0,
             'refetch_count' => 0,
+            'to_fetch' => nil,
+            'fetched_at' => nil,
             'fetched_from' => '',
             'content_size' => 0,
+            'content_type' => nil,
             'force_fetch' => false,
+            'response_checksum' => nil,
+            'response_cookie' => nil,
+            'response_headers' => nil,
+            'response_proto' => nil,
+            'response_status' => nil,
+            'response_status_code' => nil,
+            'failed_at' => nil,
+            'failed_content_type' => nil,
+            'failed_effective_url' => nil,
+            'failed_response_checksum' => nil,
+            'failed_response_cookie' => nil,
+            'failed_response_headers' => nil,
+            'failed_response_proto' => nil,
+            'failed_response_status' => nil,
+            'failed_response_status_code' => nil,
             'driver' => {
               'name' => '',
               'pre_code' => '',
               'code' => '',
               'goto_options' => nil,
               'stealth' => false,
-              'enable_images' => false
+              'enable_images' => false,
+              'disable_adblocker' => false
             },
             'display' => {
               'width' => 0,
@@ -536,7 +566,11 @@ module DhEasy
               'options' => nil
             },
             'driver_log' => nil,
-            'vars' => {}
+            'max_size' => 0,
+            'enable_global_cache' => nil,
+            'retry_interval' => nil,
+            'vars' => {},
+            'created_at' => nil,
           }
         end
 

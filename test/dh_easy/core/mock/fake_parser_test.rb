@@ -29,7 +29,11 @@ describe 'fake parser' do
         :find_output,
         :find_outputs,
         :refetch,
-        :reparse
+        :reparse,
+        :limbo,
+        :get_content,
+        :get_failed_content,
+        :finish
       ]
       assert_empty err
       assert_equal expected.sort, data.sort

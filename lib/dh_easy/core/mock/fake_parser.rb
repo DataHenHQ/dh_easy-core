@@ -22,7 +22,11 @@ module DhEasy
             :find_output,
             :find_outputs,
             :refetch,
-            :reparse
+            :reparse,
+            :limbo,
+            :get_content,
+            :get_failed_content,
+            :finish
           ].freeze
           DhEasy::Core::Mock::FakeExecutor.check_compatibility real_methods, mock_methods
           mock_methods

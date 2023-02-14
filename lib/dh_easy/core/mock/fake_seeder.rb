@@ -17,7 +17,8 @@ module DhEasy
             :save_pages,
             :save_outputs,
             :find_output,
-            :find_outputs
+            :find_outputs,
+            :finish
           ].freeze
           DhEasy::Core::Mock::FakeExecutor.check_compatibility real_methods, mock_methods
           mock_methods

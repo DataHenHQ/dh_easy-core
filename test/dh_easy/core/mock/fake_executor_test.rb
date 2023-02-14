@@ -871,7 +871,16 @@ describe 'fake executor' do
           'failed_response_cookie' => 'bbb=222',
           'failed_effective_url' => 'https://www.example.com/abc',
           'failed_at' => '2009-01-20T10:23:11Z',
-          'failed_content_type' => 'text/html; charset=UTF-8'
+          'failed_content_type' => 'text/html; charset=UTF-8',
+          'no_default_headers' => false,
+          'fresh' => nil,
+          'proxy_type' => '',
+          'failed_response_checksum' => nil,
+          'failed_response_proto' => nil,
+          'failed_response_status' => nil,
+          'max_size' => 0,
+          'enable_global_cache' => nil,
+          'retry_interval' => nil,
         }
         assert_equal expected_before_refetch, page_to_refetch
 
@@ -945,6 +954,15 @@ describe 'fake executor' do
           'failed_effective_url' => nil,
           'failed_at' => nil,
           'failed_content_type' => nil,
+          'no_default_headers' => false,
+          'fresh' => nil,
+          'proxy_type' => '',
+          'failed_response_checksum' => nil,
+          'failed_response_proto' => nil,
+          'failed_response_status' => nil,
+          'max_size' => 0,
+          'enable_global_cache' => nil,
+          'retry_interval' => nil,
         }
         assert_equal expected_after_refetch, page_to_refetch
       end
@@ -1093,7 +1111,16 @@ describe 'fake executor' do
           'failed_response_cookie' => 'bbb=222',
           'failed_effective_url' => 'https://www.example.com/abc',
           'failed_at' => '2009-01-20T10:23:11Z',
-          'failed_content_type' => 'text/html; charset=UTF-8'
+          'failed_content_type' => 'text/html; charset=UTF-8',
+          'no_default_headers' => false,
+          'fresh' => nil,
+          'proxy_type' => '',
+          'failed_response_checksum' => nil,
+          'failed_response_proto' => nil,
+          'failed_response_status' => nil,
+          'max_size' => 0,
+          'enable_global_cache' => nil,
+          'retry_interval' => nil,
         }
         assert_equal expected_before_refetch, @executor.page
 
@@ -1168,6 +1195,15 @@ describe 'fake executor' do
           'failed_effective_url' => nil,
           'failed_at' => nil,
           'failed_content_type' => nil,
+          'no_default_headers' => false,
+          'fresh' => nil,
+          'proxy_type' => '',
+          'failed_response_checksum' => nil,
+          'failed_response_proto' => nil,
+          'failed_response_status' => nil,
+          'max_size' => 0,
+          'enable_global_cache' => nil,
+          'retry_interval' => nil,
         }
         assert_equal expected_before_refetch, @executor.mock_page_before_flush
         assert_equal expected_after_refetch, @executor.saved_pages.first
@@ -1313,7 +1349,16 @@ describe 'fake executor' do
           'failed_response_cookie' => 'bbb=222',
           'failed_effective_url' => 'https://www.example.com/abc',
           'failed_at' => '2009-01-20T10:23:11Z',
-          'failed_content_type' => 'text/html; charset=UTF-8'
+          'failed_content_type' => 'text/html; charset=UTF-8',
+          'no_default_headers' => false,
+          'fresh' => nil,
+          'proxy_type' => '',
+          'failed_response_checksum' => nil,
+          'failed_response_proto' => nil,
+          'failed_response_status' => nil,
+          'max_size' => 0,
+          'enable_global_cache' => nil,
+          'retry_interval' => nil,
         }
         assert_equal expected_before_reparse, page_to_reparse
 
@@ -1401,7 +1446,16 @@ describe 'fake executor' do
           'failed_response_cookie' => 'bbb=222',
           'failed_effective_url' => 'https://www.example.com/abc',
           'failed_at' => '2009-01-20T10:23:11Z',
-          'failed_content_type' => 'text/html; charset=UTF-8'
+          'failed_content_type' => 'text/html; charset=UTF-8',
+          'no_default_headers' => false,
+          'fresh' => nil,
+          'proxy_type' => '',
+          'failed_response_checksum' => nil,
+          'failed_response_proto' => nil,
+          'failed_response_status' => nil,
+          'max_size' => 0,
+          'enable_global_cache' => nil,
+          'retry_interval' => nil,
         }
         assert_equal expected_after_reparse, page_to_reparse
       end
@@ -1550,7 +1604,16 @@ describe 'fake executor' do
           'failed_response_cookie' => 'bbb=222',
           'failed_effective_url' => 'https://www.example.com/abc',
           'failed_at' => '2009-01-20T10:23:11Z',
-          'failed_content_type' => 'text/html; charset=UTF-8'
+          'failed_content_type' => 'text/html; charset=UTF-8',
+          'no_default_headers' => false,
+          'fresh' => nil,
+          'proxy_type' => '',
+          'failed_response_checksum' => nil,
+          'failed_response_proto' => nil,
+          'failed_response_status' => nil,
+          'max_size' => 0,
+          'enable_global_cache' => nil,
+          'retry_interval' => nil,
         }
         assert_equal expected_before_reparse, @executor.page
 
@@ -1639,7 +1702,16 @@ describe 'fake executor' do
           'failed_response_cookie' => 'bbb=222',
           'failed_effective_url' => 'https://www.example.com/abc',
           'failed_at' => '2009-01-20T10:23:11Z',
-          'failed_content_type' => 'text/html; charset=UTF-8'
+          'failed_content_type' => 'text/html; charset=UTF-8',
+          'no_default_headers' => false,
+          'fresh' => nil,
+          'proxy_type' => '',
+          'failed_response_checksum' => nil,
+          'failed_response_proto' => nil,
+          'failed_response_status' => nil,
+          'max_size' => 0,
+          'enable_global_cache' => nil,
+          'retry_interval' => nil,
         }
         assert_equal expected_before_reparse, @executor.mock_page_before_flush
         assert_equal expected_after_reparse, @executor.saved_pages.first

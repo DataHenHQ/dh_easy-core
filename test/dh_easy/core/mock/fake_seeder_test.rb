@@ -24,7 +24,8 @@ describe 'fake seeder' do
         :save_pages,
         :save_outputs,
         :find_output,
-        :find_outputs
+        :find_outputs,
+        :finish
       ]
       assert_empty err
       assert_equal expected.sort, data.sort
